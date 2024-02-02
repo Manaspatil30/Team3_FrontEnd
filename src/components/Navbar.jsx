@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -7,14 +7,30 @@ import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
+import Logo from '../images/Logo.png';
+import Modal from '@mui/material/Modal';
+import Fade from '@mui/material/Fade';
+import Backdrop from '@mui/material/Backdrop';
+import TextField from '@mui/material/TextField';
+import { Link } from '@mui/material';
 
-const pages = ['Products', 'Pricing', 'Blog'];
+const pages = ['Explore', 'Stores', 'Sign in'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  borderRadius:'10px',
+  boxShadow: 24,
+  p: 4,
+  textAlign:'center'
+};
 
 const Navbar = () => {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -35,8 +51,13 @@ const Navbar = () => {
     setAnchorElUser(null);
   };
 
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   return (
-    <AppBar position="static">
+    <>
+    <AppBar position="static" sx={{backgroundColor:'#edf3fd', boxShadow:'none'}}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
@@ -55,7 +76,9 @@ const Navbar = () => {
               textDecoration: 'none',
             }}
           >
-            Unikart
+            <Box sx={{padding:'10px'}}>
+            <img src={Logo} height={"50px"} width={"auto"}/>
+            </Box>
           </Typography>
 
           <Box sx={{ display: { xs: 'flex', md: 'none' }}}>
@@ -112,21 +135,33 @@ const Navbar = () => {
               textDecoration: 'none',
             }}
           >
-            Unikart
+            <img src={Logo}/>
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent:'end' }}>
-            {pages.map((page) => (
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent:'end', marginRight:'2rem' }}>
+            {/* {pages.map((page) => (
               <Button
                 key={page}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
+                sx={{ my: 2, display: 'block', color:'#000', fontWeight:'700' }}
               >
                 {page}
               </Button>
-            ))}
+            ))} */}
+            <Button
+                href='/explore'
+                sx={{ my: 2, display: 'block', color:'#000', fontWeight:'700' }}
+              >
+                Explore
+            </Button>
+            <Button
+                onClick={handleOpen}
+                sx={{ my: 2, display: 'block', color:'#000', fontWeight:'700' }}
+              >
+                Sign in
+            </Button>
           </Box>
 
-          <Box sx={{ flexGrow: 0 }}>
+          {/* <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
@@ -154,10 +189,44 @@ const Navbar = () => {
                 </MenuItem>
               ))}
             </Menu>
-          </Box>
+          </Box> */}
         </Toolbar>
       </Container>
     </AppBar>
+    <Modal
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
+        open={open}
+        onClose={handleClose}
+        closeAfterTransition
+        slots={{ backdrop: Backdrop }}
+        slotProps={{
+          backdrop: {
+            timeout: 500,
+          },
+        }}
+      >
+        <Fade in={open}>
+          <Box sx={style}>
+            <Typography sx={{marginBottom:'20px'}} variant='h3'>Log in</Typography>
+            <Box sx={{marginBottom:'20px'}} >
+              <TextField  fullWidth id="outlined-basic" label="Username" variant="outlined" />
+            </Box>
+            <Box sx={{marginBottom:'20px'}}>
+              <TextField  fullWidth id="outlined-basic" label="Password" variant="outlined" />
+            </Box>
+            <Button sx={{marginBottom:'20px'}} variant='contained'>
+              Log in
+            </Button>
+            <Box>
+              <Link href='/'>
+              <Typography variant='caption'>new user? Sign up!</Typography>
+              </Link>
+            </Box>
+          </Box>
+        </Fade>
+      </Modal>
+    </>
   );
 }
 

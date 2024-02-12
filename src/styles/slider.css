@@ -1,0 +1,23 @@
+.slick-next{
+    color: gray;
+}
+
+.slick-prev{
+    color: gray;
+    font-size: 1rem !important;
+    left: -18px;
+}
+
+.slick-next:hover{
+    color: black;
+}
+
+.slick-prev:hover{
+    color: black;
+}
+
+.slide-hover:hover{
+    box-shadow: 2px 12px 15px #999;
+    transition-duration: 500ms;
+    transform: translateY(-7px);
+}

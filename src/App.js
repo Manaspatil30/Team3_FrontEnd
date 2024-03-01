@@ -2,6 +2,7 @@ import Home from './pages/Home';
 import Navbar from './components/Navbar';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Explore from './pages/Explore';
+import Cart from './pages/Cart';
 
 function App() {
   return (

@@ -32,7 +32,6 @@ const Home = () => {
           </Grid>
         </Grid>
       </Container>
-      <Footer/>
     </>
   );
 };

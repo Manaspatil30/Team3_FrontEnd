@@ -53,10 +53,7 @@ const Search = styled('div')(({ theme }) => ({
       paddingLeft: `calc(1em + ${theme.spacing(4)})`,
       transition: theme.transitions.create('width'),
       [theme.breakpoints.up('sm')]: {
-        width: '65ch',
-        '&:focus': {
-          width: '75ch',
-        },
+        width: '65ch'
       },
     },
   }));
@@ -143,7 +140,7 @@ const NavbarSearch = () => {
             <Button sx={{backgroundColor:'#4DB528', "&:hover" : {backgroundColor:'#4DB528'}, height:'3.5rem', textTransform:'none', fontWeight:'700'}} variant='contained' startIcon={<FormatAlignLeftRoundedIcon/>} endIcon={<KeyboardArrowDownRoundedIcon/>}>
                 All Categories
             </Button>
-            <Box width={'30%'} display={'flex'} alignItems={'center'} textAlign={'center'} justifyContent={'space-between'}>
+            <Box width={'35%'} display={'flex'} alignItems={'center'} textAlign={'center'} justifyContent={'space-between'}>
                 <Button sx={{color:'#000', fontWeight:'700', textTransform:'none'}} endIcon={<KeyboardArrowDownRoundedIcon/>}>
                     Explore
                 </Button>

@@ -4,25 +4,24 @@ import "../styles/home.css";
 import SlickSlider from "../components/SlickSlider";
 import AddSlider from "../components/AddSlider";
 import Footer from "../components/Footer";
+import vegetable from "../images/vegetables.svg"
+import CategorySection from "../components/CategorySection";
 
 const Home = () => {
   return (
     <>
       <Container sx={{overflow:'hidden'}} maxWidth={"xl"}>
-
-        <SlickSlider/>
-
+        {/* <SlickSlider/> */}
+        <CategorySection/>
         <Grid container mt={'10%'} mb={'10%'}>
           <Grid item md={6} style={{justifyContent:'center', display:'flex'}}>
-            <img className="img1" src="https://hips.hearstapps.com/hmg-prod/images/online-buying-and-delivery-concept-royalty-free-image-1675370119.jpg?crop=0.74996xw:1xh;center,top&resize=1200:*" alt=""/>
+            <img className="img1" src={vegetable} alt=""/>
           </Grid>
           <Grid item md={6} style={{justifyContent:'center', display:'flex'}}>
             <Typography>Image description</Typography>
           </Grid>
         </Grid>
-
         <AddSlider/>
-
         <Grid container mt={'10%'} mb={'10%'}>
           <Grid item md={6} style={{justifyContent:'center', display:'flex'}}>
           <Typography>Image description</Typography>

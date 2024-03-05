@@ -6,6 +6,7 @@ import Signup from './pages/Signup';
 import Footer from './components/Footer';
 import axios from "axios";
 import Cart from './pages/Cart';
+import ErrorPage from './pages/Error';
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
         <Route path='/explore' element={<Explore/>}/>
         <Route path='/signUp' element={<Signup/>}/>
         <Route path='/Cart' element={<Cart/>}/>
+        <Route path='*' element={<ErrorPage/>}/>
       </Routes>
       </BrowserRouter>
       <Footer/>

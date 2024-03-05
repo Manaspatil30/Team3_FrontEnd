@@ -9,6 +9,7 @@ import Cart from './pages/Cart';
 import NavbarSearch from './components/NavbarSearch';
 import { Container, ThemeProvider } from '@mui/material';
 import theme from "./utils/theme"
+import "./styles/app.css"
 
 function App() {
 

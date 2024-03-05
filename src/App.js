@@ -7,6 +7,10 @@ import Footer from './components/Footer';
 import axios from "axios";
 import Cart from './pages/Cart';
 import ErrorPage from './pages/Error';
+import NavbarSearch from './components/NavbarSearch';
+import { Container, ThemeProvider } from '@mui/material';
+import theme from "./utils/theme"
+import "./styles/app.css"
 
 function App() {
 
@@ -14,7 +18,9 @@ function App() {
 
   return (
     <div className="app">
-      <Navbar />
+      {/* <ThemeProvider theme={theme}> */}
+      <NavbarSearch />
+      <Container maxWidth='xl'>
       <BrowserRouter>
       <Routes>
         <Route path='/' element={<Home/>}/>
@@ -24,7 +30,9 @@ function App() {
         <Route path='*' element={<ErrorPage/>}/>
       </Routes>
       </BrowserRouter>
+      </Container>
       <Footer/>
+      {/* </ThemeProvider> */}
     </div>
   );
 }

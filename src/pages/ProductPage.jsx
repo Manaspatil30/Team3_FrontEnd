@@ -1,0 +1,23 @@
+import React from 'react';
+
+import ProductDetailsCard from '../components/ProductDetailsCard';
+import ProductBenefits from '../components/ProductBenefits';
+import { Container, Divider } from "@mui/material";
+import SimilarProducts from '../components/SimilarProducts';
+
+const ProductPage = () => {
+  return (
+    <Container maxWidth="lg" style={{ paddingTop: '30px', paddingLeft: '75px' }}>
+      <ProductDetailsCard></ProductDetailsCard>
+      <Divider style={{ paddingBottom: '100px'}}></Divider>
+      <ProductBenefits></ProductBenefits>
+      <SimilarProducts></SimilarProducts>
+      
+
+    </Container>
+  );
+}
+
+export default ProductPage;
+
+

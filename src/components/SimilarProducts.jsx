@@ -24,7 +24,7 @@ const SimilarProducts = () => {
         <div style={{paddingTop: '100px' , paddingBottom:'100px' ,}}>
             <Slider {...settings}>
                 <div>
-                    <Card style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                    <Card style={{marginBottom:'10px', margin: '0 50px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                         <CardContent>
                             <Typography variant="h6" component="div" gutterBottom>
                                 Product Name 1
@@ -53,7 +53,7 @@ const SimilarProducts = () => {
                     </Card>
                 </div>
                 <div>
-                    <Card style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                    <Card style={{ marginBottom:'10px', margin: '0 50px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                         <CardContent>
                             <Typography variant="h6" component="div" gutterBottom>
                                 Product Name 2
@@ -82,7 +82,7 @@ const SimilarProducts = () => {
                     </Card>
                 </div>
                 <div>
-                    <Card style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                    <Card style={{marginBottom:'10px',  margin: '0 50px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                         <CardContent>
                             <Typography variant="h6" component="div" gutterBottom>
                                 Product Name 3
@@ -111,7 +111,7 @@ const SimilarProducts = () => {
                     </Card>
                 </div>
                 <div>
-                    <Card style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                    <Card style={{marginBottom:'10px', margin: '0 50px',display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                         <CardContent>
                             <Typography variant="h6" component="div" gutterBottom>
                                 Product Name 4
@@ -140,7 +140,7 @@ const SimilarProducts = () => {
                     </Card>
                 </div>
                 <div>
-                    <Card style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                    <Card style={{  marginBottom:'10px',  margin: '0 50px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                         <CardContent>
                             <Typography variant="h6" component="div" gutterBottom>
                                 Product Name 5
@@ -169,7 +169,7 @@ const SimilarProducts = () => {
                     </Card>
                 </div>
                 <div>
-                    <Card style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                    <Card style={{ marginBottom:'10px',  margin: '0 50px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                         <CardContent>
                             <Typography variant="h6" component="div" gutterBottom>
                                 Product Name 6

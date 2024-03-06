@@ -2,8 +2,8 @@
 import React from 'react';
 import img from '../images/tomato.png';
 import {  Grid, Card, CardMedia,CardContent,Typography,Button } from '@mui/material';
-import { IoMdStar } from "react-icons/io";
-import { IoIosStarOutline } from "react-icons/io";
+// import { IoMdStar } from "react-icons/io";
+// import { IoIosStarOutline } from "react-icons/io";
 
 
 const ExploreProductCard = () => {
@@ -34,11 +34,11 @@ const ExploreProductCard = () => {
                             Product Name
                         </Typography>
                         <div>
+                            {/* <IoMdStar />
                             <IoMdStar />
                             <IoMdStar />
-                            <IoMdStar />
-                            <IoMdStar />
-                            <IoIosStarOutline />
+                            <IoMdStar /> */}
+                            {/* <IoIosStarOutline /> */}
 
                 
                         </div>

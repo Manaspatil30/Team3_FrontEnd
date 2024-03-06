@@ -7,6 +7,10 @@ import Footer from './components/Footer';
 import AboutUs from './pages/AboutUs';
 import axios from "axios";
 import Cart from './pages/Cart';
+import ProductDetailsCard from './components/ProductDetailsCard';
+import ProductBenefits from './components/ProductBenefits';
+import ProductPage from './pages/ProductPage';
+import ExploreProductCard from './components/ExploreProductCard';
 import ContactUs from './pages/ContactUs';
 import ErrorPage from './pages/Error';
 import NavbarSearch from './components/NavbarSearch';
@@ -20,15 +24,14 @@ function App() {
 
   return (
     <div className="app">
-      {/* <ThemeProvider theme={theme}> */}
-      <NavbarSearch />
-      <Container maxWidth='xl'>
+      <Navbar />
       <BrowserRouter>
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/explore' element={<Explore/>}/>
         <Route path='/signUp' element={<Signup/>}/>
         <Route path='/Cart' element={<Cart/>}/>
+        <Route path='/productdetails' element={<ProductPage/>}/>
         <Route path='/Error' element={<ErrorPage/>}/>
         <Route path='/AboutUs' element={<AboutUs/>}/>
         <Route path='/ContactUs' element={<ContactUs/>}/>

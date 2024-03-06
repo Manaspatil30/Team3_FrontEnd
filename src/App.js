@@ -4,8 +4,10 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Explore from './pages/Explore';
 import Signup from './pages/Signup';
 import Footer from './components/Footer';
+import AboutUs from './pages/AboutUs';
 import axios from "axios";
 import Cart from './pages/Cart';
+import ContactUs from './pages/ContactUs';
 import ErrorPage from './pages/Error';
 import NavbarSearch from './components/NavbarSearch';
 import { Container, ThemeProvider } from '@mui/material';
@@ -27,7 +29,9 @@ function App() {
         <Route path='/explore' element={<Explore/>}/>
         <Route path='/signUp' element={<Signup/>}/>
         <Route path='/Cart' element={<Cart/>}/>
-        <Route path='*' element={<ErrorPage/>}/>
+        <Route path='/Error' element={<ErrorPage/>}/>
+        <Route path='/AboutUs' element={<AboutUs/>}/>
+        <Route path='/ContactUs' element={<ContactUs/>}/>
       </Routes>
       </BrowserRouter>
       </Container>

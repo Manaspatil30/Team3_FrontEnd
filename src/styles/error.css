@@ -5,7 +5,7 @@
   
   .error-page h1 {
     font-size: 2em;
-    color: #ff0000; /* Red color for error message */
+    color: #ff9500f7; 
   }
   
   .error-page p {
@@ -16,7 +16,7 @@
   
   .error-page button {
     padding: 10px 20px;
-    background-color: #ff0000;
+    background-color: #ff9500f7;
     color: #fff;
     border: none;
     border-radius: 5px;

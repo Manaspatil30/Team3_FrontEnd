@@ -9,7 +9,7 @@ import InputBase from '@mui/material/InputBase';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import Logo from '../images/Logo1.png';
-import { Button, Container, ListItemIcon, ListItemText, MenuItem, Select } from '@mui/material';
+import { Button, Container, Link, ListItemIcon, ListItemText, MenuItem, Select } from '@mui/material';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
@@ -66,7 +66,9 @@ const NavbarSearch = () => {
    <Container maxWidth='xl' sx={{ flexGrow: 1 }}>
           <Box width={'100%'} display={'flex'} alignItems={'center'} justifyContent={'space-between'}>
             <Box sx={{ padding: "10px" }}>
+              <Link href='/'>
                 <img src={Logo} height={"50px"} width={"auto"} />
+              </Link>
             </Box>
             {/* <Select
             sx={{width:'8rem', height:'2.5rem', color:'#000'}}
@@ -141,7 +143,7 @@ const NavbarSearch = () => {
                 All Categories
             </Button>
             <Box width={'35%'} display={'flex'} alignItems={'center'} textAlign={'center'} justifyContent={'space-between'}>
-                <Button sx={{color:'#000', fontWeight:'700', textTransform:'none'}} endIcon={<KeyboardArrowDownRoundedIcon/>}>
+                <Button href='/explore' sx={{color:'#000', fontWeight:'700', textTransform:'none'}} endIcon={<KeyboardArrowDownRoundedIcon/>}>
                     Explore
                 </Button>
                 <Button sx={{color:'#000', fontWeight:'700', textTransform:'none'}} endIcon={<KeyboardArrowDownRoundedIcon/>}>

@@ -10,6 +10,7 @@ import NavbarSearch from './components/NavbarSearch';
 import { Container, ThemeProvider } from '@mui/material';
 import theme from "./utils/theme"
 import "./styles/app.css"
+import ProductPage from './pages/ProductPage';
 
 function App() {
 

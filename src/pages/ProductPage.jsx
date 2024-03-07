@@ -7,7 +7,7 @@ import SimilarProducts from '../components/SimilarProducts';
 
 const ProductPage = () => {
   return (
-    <Container maxWidth="lg" style={{ paddingTop: '30px', paddingLeft: '75px' }}>
+    <Container maxWidth="xl" style={{ paddingTop: '30px', paddingLeft: '75px' }}>
       <ProductDetailsCard></ProductDetailsCard>
       <Divider style={{ paddingBottom: '100px'}}></Divider>
       <ProductBenefits></ProductBenefits>

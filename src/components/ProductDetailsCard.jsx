@@ -2,8 +2,8 @@ import React from 'react';
 import img from '../images/tomato.png';
 import {  Grid, Card, CardMedia,CardContent,Typography,Button } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import  {FaCcMastercard}  from "react-icons/fa";
-import { FaCcVisa } from "react-icons/fa6";
+// import  {FaCcMastercard}  from "react-icons/fa";
+// import { FaCcVisa } from "react-icons/fa6";
 
 
 const ProductDetailsCard = () => {
@@ -34,7 +34,7 @@ const ProductDetailsCard = () => {
                 Price: £2.99
               </Typography>
               <Typography variant="body1" color="text.secondary">
-              <span   >{<FaCcMastercard size={50}/>}</span><FaCcVisa size={50} />
+              {/* <span   >{<FaCcMastercard size={50}/>}</span><FaCcVisa size={50} /> */}
               </Typography>
               <Typography variant="body2" color="text.secondary" gutterBottom style={{ paddingBottom: '45px'}}>
                 Availability: In Stock

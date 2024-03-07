@@ -4,15 +4,15 @@ function Item(props)
 {
     return (
         <>
-            <h2>{props.item.name}</h2>
-            <img style={{width:'100%', height:'60vh', borderRadius:'15px'}} src={props.item.image} alt=""/>
-            <div style={{marginBottom:'20px'}}>
+            {/* <h2>{props.item.name}</h2> */}
+            <img style={{width:'100%', height:'60vh', borderRadius:'15px', marginTop:'5%'}} src={props.item.image} alt=""/>
+            {/* <div style={{marginBottom:'20px'}}>
                 <p>{props.item.description}</p>
-            </div>
+            </div> */}
 
-            <Button variant="contained">
+            {/* <Button variant="contained">
                 Check it out!
-            </Button>
+            </Button> */}
         </>
     )
 }

@@ -52,7 +52,7 @@ const ProductDetailsCard = () => {
         <Grid item xs={6} sm={6}>
           <Grid container spacing={3}>
             <Grid item xs={6} sm={6}>
-            <Card style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+            <Card style={{ marginBottom:'10px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
               <CardContent>
                   <Typography variant="h6" component="div" gutterBottom>
                     Product Name 2
@@ -82,7 +82,7 @@ const ProductDetailsCard = () => {
               </Card>
             </Grid>
             <Grid item xs={6} sm={6}>
-              <Card style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+              <Card style={{ marginBottom:'10px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
               <CardContent>
                   <Typography variant="h6" component="div" gutterBottom>
                     Product Name 3

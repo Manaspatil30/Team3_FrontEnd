@@ -1,13 +1,13 @@
 
 import React from 'react'
-import { Grid,  Typography, Box, Paper } from '@mui/material';
+import { Grid,  Typography, Box} from '@mui/material';
 
 const ProductBenefits = () => {
   return (
     <Box mt={10}>
       <Grid container spacing={2}>
         <Grid item xs={12} md={6}>
-          <Paper elevation={0}>
+          <Box>
             
               <Typography variant="h5" gutterBottom style={{ paddingBottom: '15px', fontWeight: 'bold' }}>
                 Benefits
@@ -19,11 +19,11 @@ const ProductBenefits = () => {
                 <li style={{ paddingBottom: '15px' }}>Versatile ingredient in cooking, can be enjoyed raw, cooked, or juiced, adding flavor and nutrition to various dishes.</li>
               </ul>
             
-          </Paper>
+              </Box>
         </Grid>
 
         <Grid item xs={12} md={6}>
-          <Paper elevation={0}>
+          <Box>
             
               <Typography variant="h5" gutterBottom style={{ paddingBottom: '15px', fontWeight: 'bold' }}>
                 Product Information
@@ -44,7 +44,7 @@ const ProductBenefits = () => {
                 <span style={{ fontWeight: 'bold' }}>{"Disclaimer:"}</span> {"The information provided about tomatoes is for general informational purposes only. It is not intended to be a substitute for professional medical advice, diagnosis, or treatment. Always seek the advice of your physician or other qualified health provider with any questions you may have regarding your health or a medical condition."}
               </Typography>
             
-          </Paper>
+            </Box>
         </Grid>
       </Grid>
     </Box>

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -16,6 +16,27 @@ import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined
 import FormatAlignLeftRoundedIcon from '@mui/icons-material/FormatAlignLeftRounded';
 import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
 import BoltOutlinedIcon from '@mui/icons-material/BoltOutlined';
+import LoginRoundedIcon from '@mui/icons-material/LoginRounded';
+import Modal from '@mui/material/Modal';
+import Fade from '@mui/material/Fade';
+import Backdrop from '@mui/material/Backdrop';
+import TextField from '@mui/material/TextField';
+import axios from 'axios';
+import Cookies from 'js-cookie';
+import Badge from '@mui/material/Badge';
+
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  borderRadius:'10px',
+  boxShadow: 24,
+  p: 4,
+  textAlign:'center'
+};
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -60,6 +81,58 @@ const Search = styled('div')(({ theme }) => ({
   
 
 const NavbarSearch = () => {
+  const [anchorElNav, setAnchorElNav] = useState(null);
+  const [anchorElUser, setAnchorElUser] = useState(null);
+  const [basketBadge , setBasketBadge] = useState();
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+
+  const [login, setlogin] = useState();
+
+  const handleOpenNavMenu = (event) => {
+    setAnchorElNav(event.currentTarget);
+  };
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
+  };
+
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
+  };
+
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
+
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  useEffect(() => {
+    axios.get('basket/1').then((data) => {
+      setBasketBadge(data.data)
+    })
+  },[])
+
+  console.log('basket badge', basketBadge?.length)
+  const loginData = {
+    "email" : email,
+    "password" : password
+  }
+
+  const userLogin = () => {
+    axios.post('signin', loginData).then((data) => {Cookies.set('jwtToken',data.data.token,{path:'/'})}).then((data) => {Cookies.set('user_id',data.data.userId,{path:'/'})})
+  }
+
+  console.log('Login info', login)
+
+  
+
+  const clearToken = () => {
+    Cookies.remove('jwtToken', {path:'/'})
+  }
+
+
   return (
    <>
 <AppBar position="sticky" sx={{backgroundColor:'#F6F6F6', boxShadow:'none'}}>
@@ -126,16 +199,21 @@ const NavbarSearch = () => {
           </Search>
         </Box>
         <Box display={'flex'} alignItems={'center'}>
-            <IconButton>
+            <IconButton href='/cart'>
+            <Badge badgeContent={basketBadge?.length} color="primary">
                 <ShoppingCartOutlinedIcon/>
+            </Badge>
             </IconButton>
-            <IconButton>
+            <IconButton onClick={handleOpen}>
+                <LoginRoundedIcon/>
+            </IconButton>
+            {/* <IconButton>
                 <AccountCircleOutlinedIcon/>
             </IconButton>
             <Typography color={'#929191'}>
                 Hello,
                 Manas Patil
-            </Typography>
+            </Typography> */}
             </Box>
           </Box>
           <Box width={'100%'} display={'flex'} alignItems={'center'} justifyContent={'space-between'}mb={2} >
@@ -162,6 +240,53 @@ const NavbarSearch = () => {
             </Button>
             </Box>
           </Box>
+          <Modal
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
+        open={open}
+        onClose={handleClose}
+        closeAfterTransition
+        slots={{ backdrop: Backdrop }}
+        slotProps={{
+          backdrop: {
+            timeout: 500,
+          },
+        }}
+      >
+        <Fade in={open}>
+          <Box sx={style}>
+            <Typography sx={{ marginBottom: "20px" }} variant="h3">
+              Log in
+            </Typography>
+            <Box sx={{ marginBottom: "20px" }}>
+              <TextField
+                fullWidth
+                id="outlined-basic"
+                label="Email"
+                variant="outlined"
+                onChange={(e)=>{setEmail(e.target.value)}}
+              />
+            </Box>
+            <Box sx={{ marginBottom: "20px" }}>
+              <TextField
+                fullWidth
+                id="outlined-basic"
+                label="Password"
+                variant="outlined"
+                onChange={(e)=>{setPassword(e.target.value)}}
+              />
+            </Box>
+            <Button sx={{ marginBottom: "20px" }} variant="contained" onClick={()=>{userLogin();}}>
+              Log in
+            </Button>
+            <Box>
+              <Link href="/signUp">
+                <Typography variant="caption">new user? Sign up!</Typography>
+              </Link>
+            </Box>
+          </Box>
+        </Fade>
+      </Modal>
     </Container>
       </AppBar>
    </>

@@ -20,6 +20,7 @@ function App() {
     <div className="app">
       {/* <ThemeProvider theme={theme}> */}
       <NavbarSearch />
+      {/* <Navbar/> */}
       <Container maxWidth='xl'>
       <BrowserRouter>
       <Routes>

@@ -8,8 +8,8 @@ const Signup = () => {
   const [phone, setPhone] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  const [address, setAddress] = useState();
-  const [membership, setMembership] = useState();
+  const [address, setAddress] = useState(null);
+  const [membership, setMembership] = useState(null);
   const [startDate, setStartDate] = useState();
   const [endDate, setEndDate] = useState();
 
@@ -21,11 +21,13 @@ const Signup = () => {
     "last_name" : lastName,
     "phone_number" : phone,
     "email" : email,
+    "address" : address,
+    "MembershipTypeID" : membership,
     "password" : password
   }
 
   const addUser = () => {
-    axios.post('signup', data)
+    axios.post('user/add', data)
   }
 
 

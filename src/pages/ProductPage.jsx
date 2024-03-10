@@ -12,8 +12,6 @@ const ProductPage = () => {
       <Divider style={{ paddingBottom: '100px'}}></Divider>
       <ProductBenefits></ProductBenefits>
       <SimilarProducts></SimilarProducts>
-      
-
     </Container>
   );
 }

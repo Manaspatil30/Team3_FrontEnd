@@ -310,7 +310,7 @@ const Navbar = () => {
                 onChange={(e)=>{setPassword(e.target.value)}}
               />
             </Box>
-            <Button sx={{ marginBottom: "20px" }} variant="contained" href='/' onClick={()=>{userLogin(); handleClose()}}>
+            <Button sx={{ marginBottom: "20px" }} variant="contained" href='/' onClick={()=>{userLogin();}}>
               Log in
             </Button>
             <Box>

@@ -3,6 +3,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import ProductCard from '../components/ProductCard';
 import Filters from '../components/Filters';
+import ExploreProductCard from '../components/ExploreProductCard';
 
 const Explore = () => {
   const [products, setProducts] = useState();
@@ -24,7 +25,8 @@ const Explore = () => {
       products?.map((item) => {
         return(
           <Grid item key={item.product_id} xs={12} sm={6} md={4}>
-            <ProductCard id={item.product_id} heading = {item.product_name} description = {item.description}/>
+            {/* <ProductCard id={item.product_id} heading = {item.product_name} description = {item.description}/> */}
+            <ExploreProductCard name={item.product_name} desc={item.description} category={item.category}/>
           </Grid>
         )
       })

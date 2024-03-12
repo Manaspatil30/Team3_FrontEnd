@@ -14,11 +14,31 @@ import { Container, ThemeProvider } from '@mui/material';
 import theme from "./utils/theme";
 import "./styles/app.css";
 import ProductPage from './pages/ProductPage';
-import ErrorPage from './pages/Error';
-import ContactUs from './pages/ContactUs'; 
+import AdminHome from './pages/AdminPages/AdminHome';
+import Products from './pages/AdminPages/Products';
+import Customers from './pages/AdminPages/Customers';
+import Admins from './pages/AdminPages/Admins';
+import Sales from './pages/AdminPages/Sales';
+
+
+
+
+
+function Layout({ children }) {
+  return (
+    <>
+      <Navbar/>
+      {children}
+      <Footer/>
+    </>
+  );
+}
+
+
 
 function App() {
   axios.defaults.baseURL = 'http://localhost:3001/';
+
 
   return (
     <div className="app">

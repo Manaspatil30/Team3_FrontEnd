@@ -24,6 +24,7 @@ import TextField from '@mui/material/TextField';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import Badge from '@mui/material/Badge';
+import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 
 const style = {
   position: 'absolute',
@@ -109,7 +110,7 @@ const NavbarSearch = () => {
   const handleClose = () => setOpen(false);
 
   useEffect(() => {
-    axios.get('basket/1').then((data) => {
+    axios.get('basket/' + Cookies.get('user_id')).then((data) => {
       setBasketBadge(data.data)
     })
   },[])
@@ -121,15 +122,25 @@ const NavbarSearch = () => {
   }
 
   const userLogin = () => {
-    axios.post('signin', loginData).then((data) => {Cookies.set('jwtToken',data.data.token,{path:'/'})}).then((data) => {Cookies.set('user_id',data.data.userId,{path:'/'})})
-  }
+    axios.post("signin", loginData).then((data) => {
+      Cookies.set("jwtToken", data.data.token, { path: "/" });
+      Cookies.set("user_id", data.data.userId, { path: "/" });
+      Cookies.set("Fname", data.data.fName, { path: "/" });
+      Cookies.set("Lname", data.data.lName, { path: "/" });
+    }).then(() => window.location.reload())
+  };
 
   console.log('Login info', login)
+  console.log('Cookie UserID', Cookies.get('user_id'))
+  console.log('Cookie JWT', Cookies.get('jwtToken'))
 
   
 
-  const clearToken = () => {
-    Cookies.remove('jwtToken', {path:'/'})
+  const clearCookie = () => {
+    Cookies.remove('jwtToken');
+    Cookies.remove('user_id');
+    Cookies.remove('Fname');
+    Cookies.remove('Lname');
   }
 
 
@@ -204,16 +215,25 @@ const NavbarSearch = () => {
                 <ShoppingCartOutlinedIcon/>
             </Badge>
             </IconButton>
-            <IconButton onClick={handleOpen}>
-                <LoginRoundedIcon/>
-            </IconButton>
-            {/* <IconButton>
+            {Cookies.get('jwtToken') ? 
+            <>
+            <IconButton>
                 <AccountCircleOutlinedIcon/>
             </IconButton>
             <Typography color={'#929191'}>
                 Hello,
-                Manas Patil
-            </Typography> */}
+                {" "+Cookies.get('Fname')}
+            </Typography> 
+            <IconButton href='/' onClick={clearCookie}>
+              <LogoutRoundedIcon/>
+            </IconButton>
+            </>
+            :
+            <IconButton onClick={handleOpen}>
+                <LoginRoundedIcon/>
+            </IconButton>
+            }
+            {/* */}
             </Box>
           </Box>
           <Box width={'100%'} display={'flex'} alignItems={'center'} justifyContent={'space-between'}mb={2} >

@@ -9,6 +9,7 @@ import Paper from '@mui/material/Paper';
 import { Box, Button, Container, IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import axios from 'axios';
+import Cookies from 'js-cookie';
 
 function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein };
@@ -18,7 +19,7 @@ const Cart = () => {
     const [basketData, setBasketData] = useState();
 
     useEffect(() => {
-        axios.get('basket/1').then((data) => {setBasketData(data.data)})
+        axios.get('basket/' + Cookies.get('user_id')).then((data) => {setBasketData(data.data)})
     },[])
 
     const deleteProduct = (product_id) => {

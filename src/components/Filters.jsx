@@ -81,20 +81,6 @@ const marks = [
   });
 
 const Filters = () => {
-  // const [state, setState] = React.useState({
-  //     gilad: true,
-  //     jason: false,
-  //     antoine: false,
-  //   });
-
-  //   const handleChange = (event) => {
-  //     setState({
-  //       ...state,
-  //       [event.target.name]: event.target.checked,
-  //     });
-  //   };
-
-  //   const { gilad, jason, antoine } = state;
 
   function valuetext(value) {
     return `${value}°C`;

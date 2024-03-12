@@ -4,8 +4,10 @@ import ProductDetailsCard from '../components/ProductDetailsCard';
 import ProductBenefits from '../components/ProductBenefits';
 import { Container, Divider } from "@mui/material";
 import SimilarProducts from '../components/SimilarProducts';
+import { withParam } from '../utils/Router.Helper';
 
-const ProductPage = () => {
+const ProductPage = (props) => {
+  console.log("Product params", props.params)
   return (
     <Container maxWidth="xl" style={{ paddingTop: '30px', paddingLeft: '75px' }}>
       <ProductDetailsCard></ProductDetailsCard>
@@ -16,6 +18,6 @@ const ProductPage = () => {
   );
 }
 
-export default ProductPage;
+export default withParam(ProductPage);
 
 

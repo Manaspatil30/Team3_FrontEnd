@@ -26,7 +26,7 @@ const Explore = () => {
         return(
           <Grid item key={item.product_id} xs={12} sm={6} md={4}>
             {/* <ProductCard id={item.product_id} heading = {item.product_name} description = {item.description}/> */}
-            <ExploreProductCard name={item.product_name} desc={item.description} category={item.category}/>
+            <ExploreProductCard id={item.product_id} name={item.product_name} desc={item.description} category={item.category}/>
           </Grid>
         )
       })

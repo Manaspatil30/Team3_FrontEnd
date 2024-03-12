@@ -23,7 +23,8 @@ const Signup = () => {
     "email" : email,
     "address" : address,
     "MembershipTypeID" : membership,
-    "password" : password
+    "password" : password,
+    "userType" : "C"
   }
 
   const addUser = () => {

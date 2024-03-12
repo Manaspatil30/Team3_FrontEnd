@@ -13,6 +13,10 @@ import Stack from '@mui/material/Stack';
 import IconButton from '@mui/material/IconButton';
 import RemoveRoundedIcon from '@mui/icons-material/RemoveRounded';
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
+import Cookies from "js-cookie";
+import axios from "axios";
+import { Link } from "react-router-dom";
+import { withParam } from "../utils/Router.Helper";
 // import { IoMdStar } from "react-icons/io";
 // import { IoIosStarOutline } from "react-icons/io";
 
@@ -31,8 +35,19 @@ const ExploreProductCard = (props) => {
     }
   }
 
+  const data = {
+    "product_id" : props.id,
+    "price" : 100,
+    "quantity" : quantity
+}
+
+  const addToBasket = () => {
+    axios.post(`basket/`+Cookies.get('user_id'), data).then(()=>{alert('Product Added to Basket')}).then(()=>{window.location.reload()})
+  }
+
   return (
     <Box mb={3}>
+      
     <Card
       sx={{ maxWidth: 300 }}
       style={{
@@ -43,6 +58,7 @@ const ExploreProductCard = (props) => {
         borderRadius: "18px",
       }}
     >
+      <Link to={'/productdetails/'+props.id} style={{color: 'inherit', textDecoration: 'inherit'}}>
       <CardContent>
         <div
           style={{ width: "100%", paddingTop: "100%", position: "relative" }}
@@ -94,6 +110,7 @@ const ExploreProductCard = (props) => {
         
         
         <Button
+        onClick={addToBasket}
           style={{
             backgroundColor:"#FFF",
             width: "130px",
@@ -112,9 +129,10 @@ const ExploreProductCard = (props) => {
         </Button>
         </Stack>
       </CardContent>
+      </Link>
     </Card>
     </Box>
   );
 };
 
-export default ExploreProductCard;
+export default withParam(ExploreProductCard);

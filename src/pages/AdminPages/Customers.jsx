@@ -1,7 +1,6 @@
+import React, { useState } from 'react';
 import AdminSideBar from '../../components/AdminSideBar';
 import AdminTopBar from '../../components/AdminTopBar';
-import React from 'react';
-import { useState } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -10,45 +9,87 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import TextField from '@mui/material/TextField';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
-
-const columns = [
-  { field: 'id', headerName: 'CustomerID', width: 100 },
-  { field: 'name', headerName: 'Name', width: 200 },
-  { field: 'surname', headerName: 'Surname', width: 200 },
-  { field: 'email', headerName: 'Email', width: 250 },
-  { field: 'password', headerName: 'Password', width: 200 }, 
-  { field: 'address', headerName: 'Address', width: 300},
+const CustomerData = [
+  { id: 1, customerID: '313', customerName: 'Oguzhan', surname: 'Cetinkaya', email: 'oguzhancetinkaya@gmail.com', password: 'oguzhan123', address: 'Aston Street B4' }
 ];
 
-const customerData = [
-  { id: 1, name: 'Oguzhan', surname: 'Cetinkaya', email: 'oguzhancetinkaya@gmail.com', password: '12312313', address: 'Aston Street Birmingham B4 7TU' },
-
-];
-
-const Customers = () =>{
-  const [rows, setRows] = useState(customerData);
+const Customers = () => {
+  const [Customers, setCustomers] = useState(CustomerData);
   const [open, setOpen] = useState(false);
-  const [newCustomerData, setnewCustomerData] = useState({ name: '', surname: '', email: '', password: '', address: '' });
+  const [selectedCustomerId, setSelectedCustomerId] = useState(null);
+  const [selectedCustomerForEdit, setSelectedCustomerForEdit] = useState(null);
 
   const handleClose = () => {
     setOpen(false);
+    setSelectedCustomerId(null);
+    setSelectedCustomerForEdit(null);
   };
 
   const handleOpen = () => {
     setOpen(true);
+    setSelectedCustomerId(null);
+    setSelectedCustomerForEdit(null);
   };
 
   const handleSave = () => {
-    const newCustomer = { ...newCustomerData, id: rows.length + 1 };
-    setRows([...rows, newCustomer]);
+    if (selectedCustomerId !== null) {
+      const updatedCustomers = Customers.map(Customer =>
+        Customer.id === selectedCustomerId ? { ...Customer, ...selectedCustomerForEdit } : Customer
+      );
+      setCustomers(updatedCustomers);
+    } else {
+      const newCustomer = { ...selectedCustomerForEdit, id: Customers.length + 1 };
+      setCustomers([...Customers, newCustomer]);
+    }
     handleClose();
+  };
+
+  const handleEdit = (id) => {
+    const selectedCustomer = Customers.find(Customer => Customer.id === id);
+    setSelectedCustomerId(id);
+    setSelectedCustomerForEdit(selectedCustomer);
+    setOpen(true);
+  };
+
+  const handleDelete = (id) => {
+    setCustomers(Customers.filter(Customer => Customer.id !== id));
   };
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    setnewCustomerData({ ...newCustomerData, [name]: value });
+    setSelectedCustomerForEdit(prevState => ({ ...prevState, [name]: value }));
   };
+
+  const columns = [
+    { field: 'id', headerName: 'CustomerID', width: 110 },
+    { field: 'customerName', headerName: 'Name', width: 150, editable: true },
+    { field: 'surname', headerName: 'Surname', width: 150, editable: true },
+    { field: 'email', headerName: 'E-mail', width: 250, editable: true },
+    { field: 'password', headerName: 'Password', width: 250, editable: true },
+    { field: 'address', headerName: 'Address', width: 450, editable: true },
+    {
+      field: 'actions',
+      headerName: 'Actions',
+      width: 150,
+      renderCell: (params) => (
+        <div>
+          <EditIcon
+            color="secondary"
+            onClick={() => handleEdit(params.row.id)}
+          >
+          </EditIcon>
+          <DeleteForeverIcon
+            color="secondary"
+            onClick={() => handleDelete(params.row.id)}
+          >
+          </DeleteForeverIcon>
+        </div>
+      ),
+    },
+  ];
 
   return (
     <>
@@ -56,29 +97,28 @@ const Customers = () =>{
       <Box sx={{ display: 'flex' }}>
         <AdminSideBar />
         <Box component="main" sx={{ flexGrow: 1, p: 3, justifyContent: 'center', paddingTop: '75px' }}>
-          <div style={{ height: 500, width: '100%' }}>
-            <Button variant="contained" onClick={handleOpen}>Add Customer</Button>
+          <div style={{ height: 750, width: '100%' }}>
+            <Button color='secondary' variant="contained" onClick={handleOpen}>Add Customer</Button>
             <DataGrid
-              rows={rows}
+              rows={Customers}
               columns={columns}
               pageSize={5}
-              checkboxSelection
             />
           </div>
         </Box>
       </Box>
 
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>New Customer</DialogTitle>
+        <DialogTitle>{selectedCustomerId !== null ? 'Edit Customer' : 'New Customer'}</DialogTitle>
         <DialogContent>
           <TextField
             autoFocus
             margin="dense"
             label="Name"
             type="text"
-            name="name"
+            name="customerName"
             fullWidth
-            value={newCustomerData.name}
+            value={selectedCustomerForEdit?.customerName || ''}
             onChange={handleInputChange}
           />
           <TextField
@@ -87,25 +127,25 @@ const Customers = () =>{
             type="text"
             name="surname"
             fullWidth
-            value={newCustomerData.surname}
+            value={selectedCustomerForEdit?.surname || ''}
             onChange={handleInputChange}
           />
           <TextField
             margin="dense"
-            label="Email"
-            type="email"
+            label="E-mail"
+            type="text"
             name="email"
             fullWidth
-            value={newCustomerData.email}
+            value={selectedCustomerForEdit?.email || ''}
             onChange={handleInputChange}
           />
           <TextField
             margin="dense"
             label="Password"
-            type="password"
+            type="text"
             name="password"
             fullWidth
-            value={newCustomerData.password}
+            value={selectedCustomerForEdit?.password || ''}
             onChange={handleInputChange}
           />
           <TextField
@@ -114,7 +154,7 @@ const Customers = () =>{
             type="text"
             name="address"
             fullWidth
-            value={newCustomerData.address}
+            value={selectedCustomerForEdit?.address || ''}
             onChange={handleInputChange}
           />
         </DialogContent>
@@ -125,5 +165,6 @@ const Customers = () =>{
       </Dialog>
     </>
   );
-}
-export default Customers
+};
+
+export default Customers;

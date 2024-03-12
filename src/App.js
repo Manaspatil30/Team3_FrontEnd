@@ -11,6 +11,7 @@ import AdminHome from './pages/AdminPages/AdminHome';
 import Products from './pages/AdminPages/Products';
 import Customers from './pages/AdminPages/Customers';
 import Admins from './pages/AdminPages/Admins';
+import Sales from './pages/AdminPages/Sales';
 
 
 
@@ -48,6 +49,7 @@ function App() {
         <Route path='/admin/products' element={<Products />} />
         <Route path='/admin/customers' element={<Customers />} />
         <Route path='/admin/admins' element={<Admins />} />
+        <Route path='/admin/sales' element={<Sales />} />
         
       </Routes>
       </BrowserRouter>

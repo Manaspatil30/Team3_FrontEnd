@@ -8,6 +8,8 @@ import { Chart } from "react-google-charts";
 import CardContent from '@mui/material/CardContent';
 import PointOfSaleIcon from '@mui/icons-material/PointOfSale';
 import LocalShippingOutlinedIcon from '@mui/icons-material/LocalShippingOutlined';
+import DisabledByDefaultIcon from '@mui/icons-material/DisabledByDefault';
+
 
 export const data = [
   ["Diary", "Hours per Day"],
@@ -33,38 +35,38 @@ const AdminHome = () => {
         <Grid container spacing={2}>
         <Grid item xs={8}>
         <Stack spacing={10} direction={'row'}>
-        <Card sx={{ maxWidth: 70+ '%',  paddingTop:'30px', backgroundColor: 'green'}}>
+        <Card sx={{ marginLeft:'100px' , paddingTop:'30px', backgroundColor: 'darkgreen'}}>
 
       <CardContent>
         <Typography gutterBottom variant="h5" component="div" color={'white'}>
-          <PointOfSaleIcon style={{paddingTop:'1px'}}></PointOfSaleIcon><span>Today's Sales</span>
+          <PointOfSaleIcon style={{paddingTop:'5px',}}></PointOfSaleIcon><span>Today's Sales</span>
         </Typography>
-        <Typography variant="body2" color={'white'} >
+        <Typography variant="body2"  marginLeft= '10%' color={'white'} >
         <ol>
-        <li>Product ID: 123123 CustomerID: 31233231</li>
-        <li>Product ID: 123123 CustomerID: 31233231</li>
-        <li>Product ID: 123123 CustomerID: 31233231</li>
-        <li>Product ID: 123123 CustomerID: 31233231</li>
-        <li>Product ID: 123123 CustomerID: 31233231</li>
-        <li>Product ID: 123123 CustomerID: 31233231</li>
-        <li>Product ID: 123123 CustomerID: 31233231</li>
-        <li>Product ID: 123123 CustomerID: 31233231</li>
-        <li>Product ID: 123123 CustomerID: 31233231</li>
-        <li>Product ID: 123123 CustomerID: 31233231</li>
-        <li>Product ID: 123123 CustomerID: 31233231</li>
-        <li>Product ID: 123123 CustomerID: 31233231</li>
-        <li>Product ID: 123123 CustomerID: 31233231</li>
-        <li>Product ID: 123123 CustomerID: 31233231</li>
-        <li>Product ID: 123123 CustomerID: 31233231</li>
-        <li>Product ID: 123123 CustomerID: 31233231</li>
-        <li>Product ID: 123123 CustomerID: 31233231</li>
-        <li>Product ID: 123123 CustomerID: 31233231</li>
-        <li>Product ID: 123123 CustomerID: 31233231</li>
-        <li>Product ID: 123123 CustomerID: 31233231</li>
-        <li>Product ID: 123123 CustomerID: 31233231</li>
-        <li>Product ID: 123123 CustomerID: 31233231</li>
-        <li>Product ID: 123123 CustomerID: 31233231</li>
-        <li>Product ID: 123123 CustomerID: 31233231</li>
+        <li>SaleID:3133</li>
+        <li>SaleID:3133</li>
+        <li>SaleID:3133</li>
+        <li>SaleID:3133</li>
+        <li>SaleID:3133</li>
+        <li>SaleID:3133</li>
+        <li>SaleID:3133</li>
+        <li>SaleID:3133</li>
+        <li>SaleID:3133</li>
+        <li>SaleID:3133</li>
+        <li>SaleID:3133</li>
+        <li>SaleID:3133</li>
+        <li>SaleID:3133</li>
+        <li>SaleID:3133</li>
+        <li>SaleID:3133</li>
+        <li>SaleID:3133</li>
+        <li>SaleID:3133</li>
+        <li>SaleID:3133</li>
+        <li>SaleID:3133</li>
+        <li>SaleID:3133</li>
+        <li>SaleID:3133</li>
+        <li>SaleID:3133</li>
+        <li>SaleID:3133</li>
+        <li>SaleID:3133</li>
 
         </ol> 
 
@@ -72,44 +74,93 @@ const AdminHome = () => {
       </CardContent>
 
         </Card>
-        <Card sx={{ maxWidth: 70 + '%', paddingTop:'30px' , backgroundColor: '#808000'}}>
+        <Card sx={{ paddingTop:'30px' , backgroundColor: 'SaddleBrown'}}>
 
     <CardContent>
       <Typography gutterBottom variant="h5" component="div"  color={'white'}>
-      <LocalShippingOutlinedIcon ></LocalShippingOutlinedIcon><span> Waiting for delivery</span>
+      <LocalShippingOutlinedIcon  style={{paddingTop:'5px',}}></LocalShippingOutlinedIcon><span> Waiting for delivery</span>
       </Typography>
-      <Typography variant="body2"  color={'white'}>
+      <Typography marginLeft= '17%' variant="body2"  color={'white'}>
       <ol>
-      <li>Product ID: 123123 CustomerID: 31233231</li>
-        <li>Product ID: 123123 CustomerID: 31233231</li>
-        <li>Product ID: 123123 CustomerID: 31233231</li>
-        <li>Product ID: 123123 CustomerID: 31233231</li>
-        <li>Product ID: 123123 CustomerID: 31233231</li>
-        <li>Product ID: 123123 CustomerID: 31233231</li>
-        <li>Product ID: 123123 CustomerID: 31233231</li>
-        <li>Product ID: 123123 CustomerID: 31233231</li>
-        <li>Product ID: 123123 CustomerID: 31233231</li>
-        <li>Product ID: 123123 CustomerID: 31233231</li>
-        <li>Product ID: 123123 CustomerID: 31233231</li>
-        <li>Product ID: 123123 CustomerID: 31233231</li>
-        <li>Product ID: 123123 CustomerID: 31233231</li>
-        <li>Product ID: 123123 CustomerID: 31233231</li>
-        <li>Product ID: 123123 CustomerID: 31233231</li>
-        <li>Product ID: 123123 CustomerID: 31233231</li>
-        <li>Product ID: 123123 CustomerID: 31233231</li>
-        <li>Product ID: 123123 CustomerID: 31233231</li>
-        <li>Product ID: 123123 CustomerID: 31233231</li>
-        <li>Product ID: 123123 CustomerID: 31233231</li>
-        <li>Product ID: 123123 CustomerID: 31233231</li>
-        <li>Product ID: 123123 CustomerID: 31233231</li>
-        <li>Product ID: 123123 CustomerID: 31233231</li>
-        <li>Product ID: 123123 CustomerID: 31233231</li>
+      <li>SaleID:3133</li>
+        <li>SaleID:3133</li>
+        <li>SaleID:3133</li>
+        <li>SaleID:3133</li>
+        <li>SaleID:3133</li>
+        <li>SaleID:3133</li>
+        <li>SaleID:3133</li>
+        <li>SaleID:3133</li>
+        <li>SaleID:3133</li>
+        <li>SaleID:3133</li>
+        <li>SaleID:3133</li>
+        <li>SaleID:3133</li>
+        <li>SaleID:3133</li>
+        <li>SaleID:3133</li>
+        <li>SaleID:3133</li>
+        <li>SaleID:3133</li>
+        <li>SaleID:3133</li>
+        <li>SaleID:3133</li>
+        <li>SaleID:3133</li>
+        <li>SaleID:3133</li>
+        <li>SaleID:3133</li>
+        <li>SaleID:3133</li>
+        <li>SaleID:3133</li>
+        <li>SaleID:3133</li>
         </ol> 
 
       </Typography>
     </CardContent>
 
     </Card>
+    <Card sx={{ paddingTop:'30px' , backgroundColor: 'Maroon'}}>
+
+<CardContent>
+  <Typography gutterBottom variant="h5" component="div"  color={'white'}>
+  <DisabledByDefaultIcon style={{paddingTop:'5px',}} ></DisabledByDefaultIcon><span> Products Out of Stock</span>
+  </Typography>
+  <Typography marginLeft= '17%'variant="body2"  color={'white'}>
+  <ol>
+    <li>ProductID:3133</li>
+    <li>ProductID:3133</li>
+    <li>ProductID:3133</li>
+    <li>ProductID:3133</li>
+    <li>ProductID:3133</li>
+    <li>ProductID:3133</li>
+    <li>ProductID:3133</li>
+    <li>ProductID:3133</li>
+    <li>ProductID:3133</li>
+    <li>ProductID:3133</li>
+    <li>ProductID:3133</li>
+    <li>ProductID:3133</li>
+    <li>ProductID:3133</li>
+    <li>ProductID:3133</li>
+    <li>ProductID:3133</li>
+    <li>ProductID:3133</li>
+    <li>ProductID:3133</li>
+    <li>ProductID:3133</li>
+    <li>ProductID:3133</li>
+    <li>ProductID:3133</li>
+    <li>ProductID:3133</li>
+    <li>ProductID:3133</li>
+    <li>ProductID:3133</li>
+    <li>ProductID:3133</li>
+    <li>ProductID:3133</li>
+    <li>ProductID:3133</li>
+    <li>ProductID:3133</li>
+    <li>ProductID:3133</li>
+    <li>ProductID:3133</li>
+    <li>ProductID:3133</li>
+    <li>ProductID:3133</li>
+    <li>ProductID:3133</li>
+
+ 
+    </ol> 
+
+  </Typography>
+</CardContent>
+
+</Card>
+    
     </Stack>
 
           

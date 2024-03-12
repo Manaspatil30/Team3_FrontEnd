@@ -1,7 +1,6 @@
+import React, { useState } from 'react';
 import AdminSideBar from '../../components/AdminSideBar';
 import AdminTopBar from '../../components/AdminTopBar';
-import React from 'react';
-import { useState } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -10,46 +9,88 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import TextField from '@mui/material/TextField';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
-
-const columns = [
-  { field: 'id', headerName: 'AdminID', width: 100 },
-  { field: 'name', headerName: 'Name', width: 200 },
-  { field: 'surname', headerName: 'Surname', width: 200 },
-  { field: 'title', headerName: 'Title', width: 150},
-  { field: 'email', headerName: 'Email', width: 250 },
-  { field: 'password', headerName: 'Password', width: 200 }, 
-  { field: 'address', headerName: 'Address', width: 300},
+const productData = [
+  { id: 1, adminName: 'Oguzhan', surname: 'Cetinkaya', title: 'Manager', email: 'oguzhancetinkaya@gmail.com', password: 'ogyzhan313', address: 'Coventry CV1' }
 ];
 
-const adminData = [
-  { id: 1, name: 'Oguzhan', surname: 'Cetinkaya', title:'Manager', email: 'oguzhancetinkaya@gmail.com', password: '12312313', address: 'Aston Street Birmingham B4 7TU' },
-
-];
-
-const Admins = () => {
-  const [rows, setRows] = useState(adminData);
+const Products = () => {
+  const [products, setProducts] = useState(productData);
   const [open, setOpen] = useState(false);
-  const [newadminData, setnewadminData] = useState({ name: '', surname: '', title:'', email: '', password: '', address: '' });
+  const [selectedProductId, setSelectedProductId] = useState(null);
+  const [selectedProductForEdit, setSelectedProductForEdit] = useState(null);
 
   const handleClose = () => {
     setOpen(false);
+    setSelectedProductId(null);
+    setSelectedProductForEdit(null);
   };
 
   const handleOpen = () => {
     setOpen(true);
+    setSelectedProductId(null);
+    setSelectedProductForEdit(null);
   };
 
   const handleSave = () => {
-    const newCustomer = { ...newadminData, id: rows.length + 1 };
-    setRows([...rows, newCustomer]);
+    if (selectedProductId !== null) {
+      const updatedProducts = products.map(product =>
+        product.id === selectedProductId ? { ...product, ...selectedProductForEdit } : product
+      );
+      setProducts(updatedProducts);
+    } else {
+      const newProduct = { ...selectedProductForEdit, id: products.length + 1 };
+      setProducts([...products, newProduct]);
+    }
     handleClose();
+  };
+
+  const handleEdit = (id) => {
+    const selectedProduct = products.find(product => product.id === id);
+    setSelectedProductId(id);
+    setSelectedProductForEdit(selectedProduct);
+    setOpen(true);
+  };
+
+  const handleDelete = (id) => {
+    setProducts(products.filter(product => product.id !== id));
   };
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    setnewadminData({ ...newadminData, [name]: value });
+    setSelectedProductForEdit(prevState => ({ ...prevState, [name]: value }));
   };
+
+  const columns = [
+    { field: 'id', headerName: 'AdminID', width: 110 },
+    { field: 'adminName', headerName: 'Admin Name', width: 150, editable: true },
+    { field: 'surname', headerName: 'Surname', width: 150, editable: true },
+    { field: 'title', headerName: 'Title', width: 150, editable: true },
+    { field: 'email', headerName: 'E-mail', width: 250, editable: true },
+    { field: 'password', headerName: 'Password', width: 200, editable: true },
+    { field: 'address', headerName: 'Address', width: 400, editable: true },
+    {
+      field: 'actions',
+      headerName: 'Actions',
+      width: 150,
+      renderCell: (params) => (
+        <div>
+          <EditIcon
+            color="secondary"
+            onClick={() => handleEdit(params.row.id)}
+          >
+          </EditIcon>
+          <DeleteForeverIcon
+            color="secondary"
+            onClick={() => handleDelete(params.row.id)}
+          >
+          </DeleteForeverIcon>
+        </div>
+      ),
+    },
+  ];
 
   return (
     <>
@@ -57,29 +98,28 @@ const Admins = () => {
       <Box sx={{ display: 'flex' }}>
         <AdminSideBar />
         <Box component="main" sx={{ flexGrow: 1, p: 3, justifyContent: 'center', paddingTop: '75px' }}>
-          <div style={{ height: 500, width: '100%' }}>
-            <Button variant="contained" onClick={handleOpen}>Add Admin</Button>
+          <div style={{ height: 750, width: '100%' }}>
+            <Button variant="contained" color='secondary' onClick={handleOpen}>Add Admin</Button>
             <DataGrid
-              rows={rows}
+              rows={products}
               columns={columns}
               pageSize={5}
-              checkboxSelection
             />
           </div>
         </Box>
       </Box>
 
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>New Admin</DialogTitle>
+        <DialogTitle>{selectedProductId !== null ? 'Edit Product' : 'New Product'}</DialogTitle>
         <DialogContent>
           <TextField
             autoFocus
             margin="dense"
-            label="Name"
+            label="Admin Name"
             type="text"
-            name="name"
+            name="adminName"
             fullWidth
-            value={newadminData.name}
+            value={selectedProductForEdit?.adminName || ''}
             onChange={handleInputChange}
           />
           <TextField
@@ -88,7 +128,7 @@ const Admins = () => {
             type="text"
             name="surname"
             fullWidth
-            value={newadminData.surname}
+            value={selectedProductForEdit?.surname || ''}
             onChange={handleInputChange}
           />
           <TextField
@@ -97,25 +137,25 @@ const Admins = () => {
             type="text"
             name="title"
             fullWidth
-            value={newadminData.title}
+            value={selectedProductForEdit?.title || ''}
             onChange={handleInputChange}
           />
           <TextField
             margin="dense"
-            label="Email"
-            type="email"
+            label="E-mail"
+            type="text"
             name="email"
             fullWidth
-            value={newadminData.email}
+            value={selectedProductForEdit?.email || ''}
             onChange={handleInputChange}
           />
           <TextField
             margin="dense"
             label="Password"
-            type="password"
+            type="text"
             name="password"
             fullWidth
-            value={newadminData.password}
+            value={selectedProductForEdit?.password || ''}
             onChange={handleInputChange}
           />
           <TextField
@@ -124,7 +164,7 @@ const Admins = () => {
             type="text"
             name="address"
             fullWidth
-            value={newadminData.address}
+            value={selectedProductForEdit?.address || ''}
             onChange={handleInputChange}
           />
         </DialogContent>
@@ -135,5 +175,6 @@ const Admins = () => {
       </Dialog>
     </>
   );
-}
-export default Admins
+};
+
+export default Products;

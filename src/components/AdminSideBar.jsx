@@ -6,17 +6,16 @@ import List from '@mui/material/List';
 import CssBaseline from '@mui/material/CssBaseline';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
-
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-
 import { useNavigate } from 'react-router-dom';
 import HomeIcon from '@mui/icons-material/Home';
 import InventoryIcon from '@mui/icons-material/Inventory';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import PersonSearchIcon from '@mui/icons-material/PersonSearch';
+import CurrencyPoundIcon from '@mui/icons-material/CurrencyPound';
 
 
 const drawerWidth = 240;
@@ -103,9 +102,29 @@ export default function AdminSideBar() {
                     justifyContent: 'center',
                   }}
                 >
-                <HomeIcon/> 
+                <HomeIcon color='info'/> 
                 </ListItemIcon>
                 <ListItemText primary='Home' sx={{ opacity: open ? 1 : 0 }} />
+              </ListItemButton>
+        </ListItem>
+        <ListItem  disablePadding sx={{ display: 'block' }} onClick={() => {navigate('/admin/sales')}}>
+              <ListItemButton
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? 'initial' : 'center',
+                  px: 2.5,
+                }}
+              >
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 3 : 'auto',
+                    justifyContent: 'center',
+                  }}
+                >
+                <CurrencyPoundIcon color='secondary'/> 
+                </ListItemIcon>
+                <ListItemText primary='Sales' sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
         </ListItem>
         <ListItem  disablePadding sx={{ display: 'block' }}onClick={() => {navigate('/admin/products')}}>
@@ -123,7 +142,7 @@ export default function AdminSideBar() {
                     justifyContent: 'center',
                   }}
                 >
-                <InventoryIcon /> 
+                <InventoryIcon color='warning' /> 
                 </ListItemIcon>
                 <ListItemText primary='Products' sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
@@ -143,7 +162,7 @@ export default function AdminSideBar() {
                     justifyContent: 'center',
                   }}
                 >
-                <PersonSearchIcon/> 
+                <PersonSearchIcon color='success'/> 
                 </ListItemIcon>
                 <ListItemText primary='Customers' sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
@@ -163,7 +182,7 @@ export default function AdminSideBar() {
                     justifyContent: 'center',
                   }}
                 >
-                <AdminPanelSettingsIcon/> 
+                <AdminPanelSettingsIcon color='error'/> 
                 </ListItemIcon>
                 <ListItemText primary='Admins' sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>

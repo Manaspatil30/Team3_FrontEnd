@@ -19,9 +19,9 @@ import Products from './pages/AdminPages/Products';
 import Customers from './pages/AdminPages/Customers';
 import Admins from './pages/AdminPages/Admins';
 import Sales from './pages/AdminPages/Sales';
-
-
-
+import ErrorPage from './pages/Error';
+import ContactUs from './pages/ContactUs';
+import Checkout from './pages/Checkout';
 
 
 function Layout({ children }) {
@@ -51,12 +51,13 @@ function App() {
             <Route path='/' element={<Home/>}/>
             <Route path='/explore' element={<Explore/>}/>
             <Route path='/signUp' element={<Signup/>}/>
-            <Route path='/Cart' element={<Cart/>}/>
+            {/*<Route path='/Cart' element={<Cart/>}/> */}
             <Route path='/productdetails/:id' element={<ProductPage/>}/>
             <Route path='/Error' element={<ErrorPage/>}/>
             <Route path='/AboutUs' element={<AboutUs/>}/>
             <Route path='/ContactUs' element={<ContactUs/>}/>
             <Route path='/CartTwo' element={<ShoppingCart/>}/>
+            <Route path='/checkout' element={<Checkout/>}/>
           </Routes>
         </BrowserRouter>
       </Container>

@@ -25,6 +25,8 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 import Badge from '@mui/material/Badge';
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
+import { useNavigate } from 'react-router-dom';
+import { withParam } from '../utils/Router.Helper';
 
 const style = {
   position: 'absolute',
@@ -79,7 +81,7 @@ const Search = styled('div')(({ theme }) => ({
       },
     },
   }));
-  
+
 
 const NavbarSearch = () => {
   const [anchorElNav, setAnchorElNav] = useState(null);
@@ -87,6 +89,7 @@ const NavbarSearch = () => {
   const [basketBadge , setBasketBadge] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  const [searchValue, setSearchValue] = useState("");
 
   const [login, setlogin] = useState();
 
@@ -110,9 +113,11 @@ const NavbarSearch = () => {
   const handleClose = () => setOpen(false);
 
   useEffect(() => {
-    axios.get('basket/' + Cookies.get('user_id')).then((data) => {
+    axios.get('basket/' + Cookies.get('user_id'))
+    .then((data) => {
       setBasketBadge(data.data)
     })
+    .catch((err) => {})
   },[])
 
   console.log('basket badge', basketBadge?.length)
@@ -143,10 +148,15 @@ const NavbarSearch = () => {
     Cookies.remove('Lname');
   }
 
+  const navigate = useNavigate();
+  const submit = () => {
+    navigate("/search/"+searchValue)
+  }
+
 
   return (
    <>
-<AppBar position="sticky" sx={{backgroundColor:'#F6F6F6', boxShadow:'none'}}>
+    <AppBar position="sticky" sx={{backgroundColor:'#F6F6F6', boxShadow:'none'}}>
    <Container maxWidth='xl' sx={{ flexGrow: 1 }}>
           <Box width={'100%'} display={'flex'} alignItems={'center'} justifyContent={'space-between'}>
             <Box sx={{ padding: "10px" }}>
@@ -164,8 +174,9 @@ const NavbarSearch = () => {
           <MenuItem value={20}>Twenty</MenuItem>
           <MenuItem value={30}>Thirty</MenuItem>
         </Select> */}
+        <form onSubmit={submit}>
         <Box display={'flex'} alignItems={'center'}>
-            <Select
+            {/* <Select
             sx={{width:'8rem', height:'2.5rem',}}
             label = "Location"
             >
@@ -198,7 +209,7 @@ const NavbarSearch = () => {
                 </ListItemIcon>
                 B16 9DP
                 </MenuItem>
-            </Select>
+            </Select> */}
           <Search>
             <SearchIconWrapper>
               <SearchIcon/>
@@ -206,9 +217,11 @@ const NavbarSearch = () => {
             <StyledInputBase
               placeholder="Search…"
               inputProps={{ 'aria-label': 'search' }}
+              onChange={(e) => {setSearchValue(e.target.value)}}
             />
           </Search>
         </Box>
+        </form>
         <Box display={'flex'} alignItems={'center'}>
             <IconButton href='/cart'>
             <Badge badgeContent={basketBadge?.length} color="primary">
@@ -308,9 +321,9 @@ const NavbarSearch = () => {
         </Fade>
       </Modal>
     </Container>
-      </AppBar>
+    </AppBar>
    </>
   )
 }
 
-export default NavbarSearch
+export default withParam(NavbarSearch)

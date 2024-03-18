@@ -19,7 +19,9 @@ const Cart = () => {
     const [basketData, setBasketData] = useState();
 
     useEffect(() => {
-        axios.get('basket/' + Cookies.get('user_id')).then((data) => {setBasketData(data.data)})
+        axios.get('basket/' + Cookies.get('user_id'))
+        .then((data) => {setBasketData(data.data)})
+        .catch((err) => {})
     },[])
 
     const deleteProduct = (product_id) => {

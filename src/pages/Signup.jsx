@@ -1,6 +1,7 @@
 import { Divider, Grid, TextField, Typography, Button } from '@mui/material'
 import axios from 'axios';
 import React, { useState } from 'react'
+import { toast } from 'react-toastify';
 
 const Signup = () => {
   const [firstName, setFirstName] = useState();
@@ -29,6 +30,12 @@ const Signup = () => {
 
   const addUser = () => {
     axios.post('user/add', data)
+    .then(()=>{
+      toast.success("User Added Successfully")
+    })
+    .catch((err)=>{
+      toast.error("Failed to add User")
+    })
   }
 
 

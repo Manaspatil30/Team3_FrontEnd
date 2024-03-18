@@ -17,20 +17,23 @@ import Cookies from "js-cookie";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { withParam } from "../utils/Router.Helper";
+import { toast } from "react-toastify";
 // import { IoMdStar } from "react-icons/io";
 // import { IoIosStarOutline } from "react-icons/io";
 
 const ExploreProductCard = (props) => {
   const [quantity, setQuantity] = useState(1);
 
-  const addQuantity = () => {
+  const addQuantity = (event) => {
+    event.preventDefault();
     setQuantity(quantity + 1)
   }
 
-  const delQuantity = () => {
+  const delQuantity = (event) => {
     if(quantity == 1){
-
+      event.preventDefault();
     }else{
+        event.preventDefault();
         setQuantity(quantity - 1)
     }
   }
@@ -42,8 +45,18 @@ const ExploreProductCard = (props) => {
 }
 
   const addToBasket = () => {
-    axios.post(`basket/`+Cookies.get('user_id'), data).then(()=>{alert('Product Added to Basket')}).then(()=>{window.location.reload()})
-  }
+    axios
+      .post(`basket/` + Cookies.get("user_id"), data)
+      .then(() => {
+        toast.success("Product Added Successfully");
+      })
+      .then(() => {
+        window.location.reload();
+      })
+      .catch((err) => {
+        toast.error("Error! Try Again");
+      });
+  };
 
   return (
     <Box mb={3}>

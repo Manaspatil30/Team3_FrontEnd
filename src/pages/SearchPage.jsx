@@ -22,9 +22,11 @@ const SearchPage = (props) => {
   return (
     <Container maxWidth="xl">
         <Box mt={5}>
+        {/* @ts-ignore */}
         {searchResult?.length > 0 ?
         <Grid sx={{maxWidth: '1200px', margin: 'auto'}} container md={9}>
             {
+              // @ts-ignore
                  searchResult?.map((item) => {
                     return (
                       <Grid item key={item.product_id} xs={12} sm={6} md={4}>

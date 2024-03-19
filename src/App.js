@@ -22,21 +22,8 @@ import Customers from './pages/AdminPages/Customers';
 import Admins from './pages/AdminPages/Admins';
 import Sales from './pages/AdminPages/Sales';
 import SearchPage from './pages/SearchPage';
-
-
-
-
-
-function Layout({ children }) {
-  return (
-    <>
-      <Navbar/>
-      {children}
-      <Footer/>
-    </>
-  );
-}
-
+import Account from './pages/Account';
+import { ToastContainer } from 'react-toastify';
 
 
 function App() {
@@ -50,8 +37,19 @@ function App() {
       <Container maxWidth='xl'>
         <BrowserRouter>
         <NavbarSearch />
+        <ToastContainer position="top-right"
+autoClose={5000}
+hideProgressBar={false}
+newestOnTop={false}
+closeOnClick
+rtl={false}
+pauseOnFocusLoss
+draggable
+pauseOnHover
+theme="light"/>
           <Routes>
             <Route path='/' element={<Home/>}/>
+            <Route path='/account/:id' element={<Account/>}/>
             <Route path='/explore' element={<Explore/>}/>
             <Route path='/signUp' element={<Signup/>}/>
             <Route path='/Cart' element={<Cart/>}/>

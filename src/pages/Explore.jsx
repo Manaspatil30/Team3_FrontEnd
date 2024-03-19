@@ -226,8 +226,9 @@ const Explore = () => {
                           control={
                             <Checkbox
                               //   checked={gilad}
-                              //   onChange={handleChange}
+                              onChange={handleCheckboxChange}
                               name="Vegetarian"
+                              value={"Dairy,Fruits,Vegetables,Bakery"}
                             />
                           }
                           label="Vegetarian"
@@ -236,8 +237,9 @@ const Explore = () => {
                           control={
                             <Checkbox
                               //   checked={jason}
-                              //   onChange={handleChange}
+                              onChange={handleCheckboxChange}
                               name="Non Vegetarian"
+                              value={"Meat"}
                             />
                           }
                           label="Non Vegetarian"

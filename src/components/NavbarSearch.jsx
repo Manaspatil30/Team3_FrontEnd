@@ -119,7 +119,7 @@ const NavbarSearch = () => {
     })
     .catch((err) => {})
   },[])
-
+{/* @ts-ignore */}
   console.log('basket badge', basketBadge?.length)
   const loginData = {
     "email" : email,
@@ -224,13 +224,14 @@ const NavbarSearch = () => {
         </form>
         <Box display={'flex'} alignItems={'center'}>
             <IconButton href='/cart'>
+              {/* @ts-ignore */}
             <Badge badgeContent={basketBadge?.length} color="primary">
                 <ShoppingCartOutlinedIcon/>
             </Badge>
             </IconButton>
             {Cookies.get('jwtToken') ? 
             <>
-            <IconButton>
+            <IconButton href={'/account/' + Cookies.get("user_id")}>
                 <AccountCircleOutlinedIcon/>
             </IconButton>
             <Typography color={'#929191'}>
@@ -297,7 +298,9 @@ const NavbarSearch = () => {
                 id="outlined-basic"
                 label="Email"
                 variant="outlined"
+                // @ts-ignore
                 onChange={(e)=>{setEmail(e.target.value)}}
+               
               />
             </Box>
             <Box sx={{ marginBottom: "20px" }}>
@@ -306,6 +309,7 @@ const NavbarSearch = () => {
                 id="outlined-basic"
                 label="Password"
                 variant="outlined"
+                // @ts-ignore
                 onChange={(e)=>{setPassword(e.target.value)}}
               />
             </Box>

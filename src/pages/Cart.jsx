@@ -30,6 +30,7 @@ const Cart = () => {
 
 
     console.log('basket data' , basketData)
+    {/* @ts-ignore */}
     console.log('123', basketData?.product_id)
   return (
     <Container maxWidth={'xl'}>
@@ -45,6 +46,7 @@ const Cart = () => {
           </TableRow>
         </TableHead>
         <TableBody>
+          {/* @ts-ignore */}
           {basketData?.map((row) => (
             <TableRow
               key={row.basket_id}

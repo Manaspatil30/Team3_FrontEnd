@@ -24,6 +24,7 @@ import Sales from './pages/AdminPages/Sales';
 import SearchPage from './pages/SearchPage';
 import Account from './pages/Account';
 import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function App() {
@@ -46,7 +47,8 @@ rtl={false}
 pauseOnFocusLoss
 draggable
 pauseOnHover
-theme="light"/>
+theme="light"
+/>
           <Routes>
             <Route path='/' element={<Home/>}/>
             <Route path='/account/:id' element={<Account/>}/>

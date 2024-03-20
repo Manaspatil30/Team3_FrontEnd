@@ -1,6 +1,7 @@
 import { Divider, Grid, TextField, Typography, Button } from '@mui/material'
 import axios from 'axios';
 import React, { useState } from 'react'
+import { toast } from 'react-toastify';
 
 const Signup = () => {
   const [firstName, setFirstName] = useState();
@@ -29,6 +30,12 @@ const Signup = () => {
 
   const addUser = () => {
     axios.post('user/add', data)
+    .then(()=>{
+      toast.success("User Added Successfully")
+    })
+    .catch((err)=>{
+      toast.error("Failed to add User")
+    })
   }
 
 
@@ -40,13 +47,19 @@ const Signup = () => {
     <Typography variant='h2' textAlign={'center'} mb={2}> Sign up</Typography>
     <Divider/>
     <Grid container mt={2} spacing={3}>
+        
         <Grid item md={12} display={'flex'} justifyContent={'space-evenly'}>
+            {/* @ts-ignore */}
             <TextField required variant='outlined' label='First Name' onChange={(e)=>{setFirstName(e.target.value)}}/>
+            {/* @ts-ignore */}
             <TextField required variant='outlined' label='Last Name' onChange={(e)=>{setLastName(e.target.value)}}/>
+            {/* @ts-ignore */}
             <TextField required variant='outlined' label='Email' onChange={(e)=>{setEmail(e.target.value)}}/>
+            {/* @ts-ignore */}
             <TextField required variant='outlined' type='number' label='Phone Number' onChange={(e)=>{setPhone(e.target.value)}}/>
         </Grid>
         <Grid item md={12} display={'flex'} justifyContent={'space-evenly'}>
+          {/* @ts-ignore */}
             <TextField required variant='outlined' label='Password' onChange={(e)=>{setPassword(e.target.value)}}/>
             <TextField variant='outlined' label='Address Line 2'/>
             <TextField variant='outlined' label='City'/>

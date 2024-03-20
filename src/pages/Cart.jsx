@@ -19,7 +19,9 @@ const Cart = () => {
     const [basketData, setBasketData] = useState();
 
     useEffect(() => {
-        axios.get('basket/' + Cookies.get('user_id')).then((data) => {setBasketData(data.data)})
+        axios.get('basket/' + Cookies.get('user_id'))
+        .then((data) => {setBasketData(data.data)})
+        .catch((err) => {})
     },[])
 
     const deleteProduct = (product_id) => {
@@ -28,6 +30,7 @@ const Cart = () => {
 
 
     console.log('basket data' , basketData)
+    {/* @ts-ignore */}
     console.log('123', basketData?.product_id)
   return (
     <Container maxWidth={'xl'}>
@@ -43,6 +46,7 @@ const Cart = () => {
           </TableRow>
         </TableHead>
         <TableBody>
+          {/* @ts-ignore */}
           {basketData?.map((row) => (
             <TableRow
               key={row.basket_id}

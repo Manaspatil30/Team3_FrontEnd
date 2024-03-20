@@ -64,12 +64,10 @@ const Customers = () => {
   };
 
   const columns = [
-    { field: 'id', headerName: 'CustomerID', width: 110 },
-    { field: 'customerName', headerName: 'Name', width: 150, editable: true },
-    { field: 'surname', headerName: 'Surname', width: 150, editable: true },
-    { field: 'email', headerName: 'E-mail', width: 250, editable: true },
-    { field: 'password', headerName: 'Password', width: 250, editable: true },
-    { field: 'address', headerName: 'Address', width: 450, editable: true },
+    { field: 'id', headerName: 'CustomerID', width: 250 },
+    { field: 'customerName', headerName: 'Name', width: 250},
+    { field: 'surname', headerName: 'Surname', width: 250},
+    { field: 'email', headerName: 'E-mail', width: 250},
     {
       field: 'actions',
       headerName: 'Actions',
@@ -77,12 +75,12 @@ const Customers = () => {
       renderCell: (params) => (
         <div>
           <EditIcon
-            color="secondary"
+            color="success"
             onClick={() => handleEdit(params.row.id)}
           >
           </EditIcon>
           <DeleteForeverIcon
-            color="secondary"
+            color="success"
             onClick={() => handleDelete(params.row.id)}
           >
           </DeleteForeverIcon>

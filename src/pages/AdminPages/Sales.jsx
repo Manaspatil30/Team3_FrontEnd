@@ -77,12 +77,12 @@ const Sales = () => {
       renderCell: (params) => (
         <div>
           <EditIcon
-            color='primary'
+            color='success'
             onClick={() => handleEdit(params.row.id)}
           >
           </EditIcon>
           <DeleteForeverIcon
-            color='primary'
+            color='success'
             onClick={() => handleDelete(params.row.id)}
           >
           </DeleteForeverIcon>

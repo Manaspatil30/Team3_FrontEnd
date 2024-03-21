@@ -10,34 +10,36 @@ import SliderCard from "./SliderCard";
 var items = [
     {
         name: "Random Name #1",
-        image:"https://media.self.com/photos/599c997a774b667d3bbe1214/16:9/w_1279,h_719,c_limit/groceries-family-month.jpg",
+        image:"https://i.imgur.com/fkYsC90.jpeg",
         description: "Random Description 1"
     },
     {
         name: "Random Name #2",
-        image:"https://static.blog.bolt.eu/LIVE/wp-content/uploads/2022/04/30135418/grocery-list-1024x536.jpg",
+        image:"https://i.imgur.com/5d7oXIw.jpeg",
         description: "Random Description 2"
     },
     {
         name: "Random Name #3",
-        image:"https://ecocart.io/wp-content/uploads/resized/2023/01/iStock-1371318211-1120x455-c-default.jpg",
+        image:"https://i.imgur.com/tQGINzF.jpeg",
         description: "Random Description 3"
     },
     {
         name: "Random Name #4",
-        image:"https://media.self.com/photos/599c997a774b667d3bbe1214/16:9/w_1279,h_719,c_limit/groceries-family-month.jpg",
+        image:"https://i.imgur.com/7SdCHph.jpeg",
         description: "Random Description 1"
     },
     {
         name: "Random Name #5",
-        image:"https://static.blog.bolt.eu/LIVE/wp-content/uploads/2022/04/30135418/grocery-list-1024x536.jpg",
+        image:"https://i.imgur.com/bRc32Vi.jpeg",
         description: "Random Description 2"
     },
     {
         name: "Random Name #6",
-        image:"https://ecocart.io/wp-content/uploads/resized/2023/01/iStock-1371318211-1120x455-c-default.jpg",
+        image:"https://i.imgur.com/pROYUkM.jpeg",
         description: "Random Description 3"
     }
+    
+    
 ]
 
 const AddSlider = () => {

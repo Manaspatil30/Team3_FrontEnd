@@ -25,6 +25,21 @@ import SearchPage from './pages/SearchPage';
 import Account from './pages/Account';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import ErrorPage from './pages/Error';
+import ContactUs from './pages/ContactUs';
+import Checkout from './pages/Checkout';
+
+
+function Layout({ children }) {
+  return (
+    <>
+      <Navbar/>
+      {children}
+      <Footer/>
+    </>
+  );
+}
+
 
 
 function App() {
@@ -54,18 +69,12 @@ theme="light"
             <Route path='/account/:id' element={<Account/>}/>
             <Route path='/explore' element={<Explore/>}/>
             <Route path='/signUp' element={<Signup/>}/>
-            <Route path='/Cart' element={<Cart/>}/>
+            {/*<Route path='/Cart' element={<Cart/>}/> */}
             <Route path='/productdetails/:id' element={<ProductPage/>}/>
             <Route path='/Error' element={<Error/>}/>
             <Route path='/AboutUs' element={<AboutUs/>}/>
             <Route path='/ContactUs' element={<ContactUs/>}/>
             <Route path='/CartTwo' element={<ShoppingCart/>}/>
-            <Route path='/admin' element={<AdminHome />} />
-            <Route path='/admin/products' element={<Products />} />
-            <Route path='/admin/customers' element={<Customers />} />
-            <Route path='/admin/admins' element={<Admins />} />
-            <Route path='/admin/sales' element={<Sales />} />
-            <Route path='/search/:value' element={<SearchPage/>}/>
           </Routes>
         </BrowserRouter>
       </Container>

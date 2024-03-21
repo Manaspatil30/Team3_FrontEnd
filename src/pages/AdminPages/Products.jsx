@@ -13,10 +13,11 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 
+
 const productData = [
-  { id: 1, productName: 'Tomato', category: 'Vegi', stock: '30', description: 'ASDNJASBDJ', benefits: 'ASDBAJHSBVDAHJD', imageUrl: 'ASDJABSJDAJDS.JPG' },
-  { id: 1, productName: 'Tomato', category: 'Vegi', stock: '30', description: 'ASDNJASBDJ', benefits: 'ASDBAJHSBVDAHJD', imageUrl: 'ASDJABSJDAJDS.JPG' },
-  { id: 1, productName: 'Tomato', category: 'Vegi', stock: '30', description: 'ASDNJASBDJ', benefits: 'ASDBAJHSBVDAHJD', imageUrl: 'ASDJABSJDAJDS.JPG' },
+  { id: 1, productName: 'Tomato', category: 'Vegi', stock: '30', description: 'ASDNJASBDJ', benefits: 'ASDBAJHSBVDAHJD', image: 'ASDJABSJDAJDS.JPG' },
+  { id: 1, productName: 'Tomato', category: 'Vegi', stock: '30', description: 'ASDNJASBDJ', benefits: 'ASDBAJHSBVDAHJD', image: 'ASDJABSJDAJDS.JPG' },
+  { id: 1, productName: 'Tomato', category: 'Vegi', stock: '30', description: 'ASDNJASBDJ', benefits: 'ASDBAJHSBVDAHJD', image: 'ASDJABSJDAJDS.JPG' },
 ];
 
 const Products = () => {
@@ -67,13 +68,10 @@ const Products = () => {
   };
 
   const columns = [
-    { field: 'id', headerName: 'ProductID', width: 120 },
-    { field: 'productName', headerName: 'Product Name', width: 170},
-    { field: 'category', headerName: 'Category', width: 150},
-    { field: 'stock', headerName: 'Stock', width: 150},
-    { field: 'description', headerName: 'Description', width: 200},
-    { field: 'benefits', headerName: 'Benefits', width: 250 },
-    { field: 'imageUrl', headerName: 'Image URL', width: 350},
+    { field: 'id', headerName: 'ProductID', width: 250 },
+    { field: 'productName', headerName: 'Product Name', width: 250},
+    { field: 'category', headerName: 'Category', width: 250},
+    { field: 'stock', headerName: 'Stock', width: 250},
     {
       field: 'actions',
       headerName: 'Actions',
@@ -81,12 +79,12 @@ const Products = () => {
       renderCell: (params) => (
         <div>
           <EditIcon
-            color='secondary'
+            color='success'
             onClick={() => handleEdit(params.row.id)}
           >
           </EditIcon>
           <DeleteForeverIcon
-            color='secondary'
+            color='success'
             onClick={() => handleDelete(params.row.id)}
           >
           </DeleteForeverIcon>
@@ -161,15 +159,7 @@ const Products = () => {
             value={selectedProductForEdit?.benefits || ''}
             onChange={handleInputChange}
           />
-          <TextField
-            margin='dense'
-            label='Image URL'
-            type='text'
-            name='imageUrl'
-            fullWidth
-            value={selectedProductForEdit?.imageUrl || ''}
-            onChange={handleInputChange}
-          />
+          <span style={{margin:'50px', paddingRight:'10px'}}>Upload Product Image</span><input type="file" style={{color:'red',}}/>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>

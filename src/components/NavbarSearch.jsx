@@ -250,7 +250,7 @@ const NavbarSearch = () => {
             {/* */}
             </Box>
           </Box>
-          <Box width={'100%'} display={'flex'} alignItems={'center'} justifyContent={'space-between'}mb={2} >
+          <Box width={'100%'} display={'flex'} alignItems={'center'} justifyContent={'space-between'} mb={2} >
             <Button sx={{backgroundColor:'#4DB528', "&:hover" : {backgroundColor:'#4DB528'}, height:'3.5rem', textTransform:'none', fontWeight:'700'}} variant='contained' startIcon={<FormatAlignLeftRoundedIcon/>} endIcon={<KeyboardArrowDownRoundedIcon/>}>
                 All Categories
             </Button>
@@ -258,13 +258,13 @@ const NavbarSearch = () => {
                 <Button href='/explore' sx={{color:'#000', fontWeight:'700', textTransform:'none'}} endIcon={<KeyboardArrowDownRoundedIcon/>}>
                     Explore
                 </Button>
-                <Button sx={{color:'#000', fontWeight:'700', textTransform:'none'}} endIcon={<KeyboardArrowDownRoundedIcon/>}>
+                <Button href='/AboutUs' sx={{color:'#000', fontWeight:'700', textTransform:'none'}} endIcon={<KeyboardArrowDownRoundedIcon/>}>
                     About us
                 </Button>
-                <Button sx={{color:'#000', fontWeight:'700', textTransform:'none'}} endIcon={<KeyboardArrowDownRoundedIcon/>}>
+                <Button href='/ContactUs' sx={{color:'#000', fontWeight:'700', textTransform:'none'}} endIcon={<KeyboardArrowDownRoundedIcon/>}>
                     Contact us
                 </Button>
-                <Button sx={{color:'#000', fontWeight:'700', textTransform:'none'}} endIcon={<KeyboardArrowDownRoundedIcon/>}>
+                <Button href='/blog' sx={{color:'#000', fontWeight:'700', textTransform:'none'}} endIcon={<KeyboardArrowDownRoundedIcon/>}>
                     Blog
                 </Button>
             </Box>

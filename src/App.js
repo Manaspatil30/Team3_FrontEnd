@@ -37,7 +37,7 @@ function App() {
       {/* <Navbar/> */}
       <Container maxWidth='xl'>
         <BrowserRouter>
-        {/* <NavbarSearch /> */}
+        <NavbarSearch />
         {/* <ToastContainer position="top-right"
 autoClose={5000}
 hideProgressBar={false}

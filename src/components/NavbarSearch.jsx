@@ -90,6 +90,7 @@ const NavbarSearch = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [searchValue, setSearchValue] = useState("");
+  const [error, setError] = useState();
 
   const [login, setlogin] = useState();
 
@@ -126,13 +127,41 @@ const NavbarSearch = () => {
     "password" : password
   }
 
+  const validations = () => {
+    let error = {}
+  
+  
+    if (!email) {
+      error.email = 'Please enter your e-mail address'
+    } else if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+      error.email = 'Invalid e-mail'}
+ 
+  
+    if (!password) {
+      error.password = 'Please enter your password'
+    } else if (password.length < 8) {
+      error.password = 'Your password must contain at least 8 characters'
+    }
+
+    // if(!password == password || !email == email){ //Wrong Email or password needs data(needs to be done by back-end team//
+    //   error.email='Incorrect username or password'
+    //   error.password='Incorrect username or password'
+    // }
+  
+    setError(error);
+
+  }
+
+
   const userLogin = () => {
-    axios.post("signin", loginData).then((data) => {
-      Cookies.set("jwtToken", data.data.token, { path: "/" });
-      Cookies.set("user_id", data.data.userId, { path: "/" });
-      Cookies.set("Fname", data.data.fName, { path: "/" });
-      Cookies.set("Lname", data.data.lName, { path: "/" });
-    }).then(() => window.location.reload())
+    if(validations()){
+      axios.post("signin", loginData).then((data) => {
+        Cookies.set("jwtToken", data.data.token, { path: "/" });
+        Cookies.set("user_id", data.data.userId, { path: "/" });
+        Cookies.set("Fname", data.data.fName, { path: "/" });
+        Cookies.set("Lname", data.data.lName, { path: "/" });
+      }).then(() => window.location.reload())
+    }
   };
 
   console.log('Login info', login)
@@ -300,6 +329,7 @@ const NavbarSearch = () => {
                 variant="outlined"
                 // @ts-ignore
                 onChange={(e)=>{setEmail(e.target.value)}}
+                error={error && error.email} helperText={error && error.email}
                
               />
             </Box>
@@ -311,6 +341,7 @@ const NavbarSearch = () => {
                 variant="outlined"
                 // @ts-ignore
                 onChange={(e)=>{setPassword(e.target.value)}}
+                error={error && error.password} helperText={error && error.password}
               />
             </Box>
             <Button sx={{ marginBottom: "20px" }} variant="contained" onClick={()=>{userLogin();}}>

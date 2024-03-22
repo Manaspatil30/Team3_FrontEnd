@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import AdminSideBar from '../../components/AdminSideBar';
-import AdminTopBar from '../../components/AdminTopBar';
 import { DataGrid } from '@mui/x-data-grid';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -65,7 +63,7 @@ const Customers = () => {
 
   const columns = [
     { field: 'id', headerName: 'CustomerID', width: 250 },
-    { field: 'customerName', headerName: 'Name', width: 250},
+    {field: 'customerName', headerName: 'Name', width: 250},
     { field: 'surname', headerName: 'Surname', width: 250},
     { field: 'email', headerName: 'E-mail', width: 250},
     {
@@ -91,11 +89,11 @@ const Customers = () => {
 
   return (
     <>
-      <AdminTopBar />
+
       <Box sx={{ display: 'flex' }}>
-        <AdminSideBar />
-        <Box component="main" sx={{ flexGrow: 1, p: 3, justifyContent: 'center', paddingTop: '75px' }}>
-          <div style={{ height: 750, width: '100%' }}>
+        
+        <Box component="main" sx={{flexGrow: 1, p: 3, justifyContent: 'center', paddingTop: '0px' }}>
+          <div style={{ height: 750, width: '100%',paddingLeft:'180px'}}>
             <Button color='secondary' variant="contained" onClick={handleOpen}>Add Customer</Button>
             <DataGrid
               rows={Customers}

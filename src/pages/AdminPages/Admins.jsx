@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import AdminSideBar from '../../components/AdminSideBar';
-import AdminTopBar from '../../components/AdminTopBar';
 import { DataGrid } from '@mui/x-data-grid';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -94,11 +92,11 @@ const Products = () => {
 
   return (
     <>
-      <AdminTopBar />
+      
       <Box sx={{ display: 'flex' }}>
-        <AdminSideBar />
-        <Box component="main" sx={{ flexGrow: 1, p: 3, justifyContent: 'center', paddingTop: '75px' }}>
-          <div style={{ height: 750, width: '100%' }}>
+        
+        <Box component="main" sx={{ flexGrow: 1, p: 3, justifyContent: 'center', paddingTop: '0px' }}>
+          <div style={{ height: 750, width: '100%', paddingLeft:'180px' }}>
             <Button variant="contained" color='secondary' onClick={handleOpen}>Add Admin</Button>
             <DataGrid
               rows={products}

@@ -14,8 +14,7 @@ import { Container, ThemeProvider } from '@mui/material';
 import theme from "./utils/theme";
 import "./styles/app.css";
 import ProductPage from './pages/ProductPage';
-import Error from './pages/Error'
-import ContactUs from './pages/ContactUs'
+import ContactUs from './pages/ContactUs';
 import AdminHome from './pages/AdminPages/AdminHome';
 import Products from './pages/AdminPages/Products';
 import Customers from './pages/AdminPages/Customers';
@@ -26,9 +25,10 @@ import Account from './pages/Account';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ErrorPage from './pages/Error';
-import ContactUs from './pages/ContactUs';
 import Checkout from './pages/Checkout';
-
+import AOS from 'aos';
+import { useEffect } from 'react';
+import 'aos/dist/aos.css';
 
 function Layout({ children }) {
   return (
@@ -44,6 +44,12 @@ function Layout({ children }) {
 
 function App() {
   axios.defaults.baseURL = 'http://localhost:3001/';
+
+  useEffect(() => {
+    AOS.init();
+    AOS.refresh();
+
+  }, [])
 
 
   return (
@@ -69,9 +75,9 @@ theme="light"
             <Route path='/account/:id' element={<Account/>}/>
             <Route path='/explore' element={<Explore/>}/>
             <Route path='/signUp' element={<Signup/>}/>
-            {/*<Route path='/Cart' element={<Cart/>}/> */}
+            <Route path='/Cart' element={<Cart/>}/>
             <Route path='/productdetails/:id' element={<ProductPage/>}/>
-            <Route path='/Error' element={<Error/>}/>
+            <Route path='/Error' element={<ErrorPage/>}/>
             <Route path='/AboutUs' element={<AboutUs/>}/>
             <Route path='/ContactUs' element={<ContactUs/>}/>
             <Route path='/CartTwo' element={<ShoppingCart/>}/>

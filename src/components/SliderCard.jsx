@@ -5,7 +5,7 @@ import "../styles/slider.css"
 const SliderCard = (props) => {
   return (
     <div style={{textAlign:'center', marginTop:'10%'}}>
-      {/* <h2>{props.item.name}</h2> */}
+      <h2>{props.item.name}</h2>
       <div style={{display:'flex', justifyContent:'center'}}>
       <img
         className='slide-hover'
@@ -14,9 +14,9 @@ const SliderCard = (props) => {
         alt=""
       />
       </div>
-      {/* <div style={{ marginBottom: "20px" }}>
+      <div style={{ marginBottom: "20px" }}>
         <p>{props.item.description}</p>
-      </div> */}
+      </div>
     </div>
   );
 }

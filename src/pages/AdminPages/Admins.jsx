@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import AdminSideBar from '../../components/AdminSideBar';
-import AdminTopBar from '../../components/AdminTopBar';
 import { DataGrid } from '@mui/x-data-grid';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -65,12 +63,12 @@ const Products = () => {
 
   const columns = [
     { field: 'id', headerName: 'AdminID', width: 110 },
-    { field: 'adminName', headerName: 'Admin Name', width: 150, editable: true },
-    { field: 'surname', headerName: 'Surname', width: 150, editable: true },
-    { field: 'title', headerName: 'Title', width: 150, editable: true },
-    { field: 'email', headerName: 'E-mail', width: 250, editable: true },
-    { field: 'password', headerName: 'Password', width: 200, editable: true },
-    { field: 'address', headerName: 'Address', width: 400, editable: true },
+    { field: 'adminName', headerName: 'Admin Name', width: 150},
+    { field: 'surname', headerName: 'Surname', width: 150},
+    { field: 'title', headerName: 'Title', width: 150},
+    { field: 'email', headerName: 'E-mail', width: 250},
+    { field: 'password', headerName: 'Password', width: 200},
+
     {
       field: 'actions',
       headerName: 'Actions',
@@ -78,12 +76,12 @@ const Products = () => {
       renderCell: (params) => (
         <div>
           <EditIcon
-            color="secondary"
+            color="success"
             onClick={() => handleEdit(params.row.id)}
           >
           </EditIcon>
           <DeleteForeverIcon
-            color="secondary"
+            color="success"
             onClick={() => handleDelete(params.row.id)}
           >
           </DeleteForeverIcon>
@@ -94,11 +92,11 @@ const Products = () => {
 
   return (
     <>
-      <AdminTopBar />
+      
       <Box sx={{ display: 'flex' }}>
-        <AdminSideBar />
-        <Box component="main" sx={{ flexGrow: 1, p: 3, justifyContent: 'center', paddingTop: '75px' }}>
-          <div style={{ height: 750, width: '100%' }}>
+        
+        <Box component="main" sx={{ flexGrow: 1, p: 3, justifyContent: 'center', paddingTop: '0px' }}>
+          <div style={{ height: 750, width: '100%', paddingLeft:'180px' }}>
             <Button variant="contained" color='secondary' onClick={handleOpen}>Add Admin</Button>
             <DataGrid
               rows={products}

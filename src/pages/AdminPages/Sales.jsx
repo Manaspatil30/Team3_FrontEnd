@@ -1,7 +1,5 @@
 import React from 'react';
 import { useState } from 'react';
-import AdminSideBar from '../../components/AdminSideBar';
-import AdminTopBar from '../../components/AdminTopBar';
 import { DataGrid } from '@mui/x-data-grid';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -77,12 +75,12 @@ const Sales = () => {
       renderCell: (params) => (
         <div>
           <EditIcon
-            color='primary'
+            color='success'
             onClick={() => handleEdit(params.row.id)}
           >
           </EditIcon>
           <DeleteForeverIcon
-            color='primary'
+            color='success'
             onClick={() => handleDelete(params.row.id)}
           >
           </DeleteForeverIcon>
@@ -93,11 +91,12 @@ const Sales = () => {
 
   return (
     <>
-      <AdminTopBar />
+      
       <Box sx={{ display: 'flex' }}>
-        <AdminSideBar />
-        <Box component='main' sx={{ flexGrow: 1, p: 3, justifyContent: 'center', paddingTop: '75px', marginLeft: '50px' }}>
-          <div style={{ height: 750, width: '90%' }}>
+        
+        <Box component='main' sx={{ flexGrow: 1, p: 3, justifyContent: 'center', paddingTop: '0px' }}>
+          <div style={{ height: 750, width: '100%', paddingLeft:'180px'}}>
+            
             <DataGrid
               rows={sales}
               columns={columns}

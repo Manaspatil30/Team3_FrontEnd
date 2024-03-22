@@ -53,7 +53,7 @@ function App() {
       <Container maxWidth='xl'>
         <BrowserRouter>
         <NavbarSearch />
-        <ToastContainer position="top-right"
+        {/* <ToastContainer position="top-right"
 autoClose={5000}
 hideProgressBar={false}
 newestOnTop={false}
@@ -63,7 +63,7 @@ pauseOnFocusLoss
 draggable
 pauseOnHover
 theme="light"
-/>
+/> */}
           <Routes>
             <Route path='/' element={<Home/>}/>
             <Route path='/account/:id' element={<Account/>}/>

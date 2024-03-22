@@ -258,10 +258,10 @@ const NavbarSearch = () => {
                 <Button href='/explore' sx={{color:'#000', fontWeight:'700', textTransform:'none'}} endIcon={<KeyboardArrowDownRoundedIcon/>}>
                     Explore
                 </Button>
-                <Button sx={{color:'#000', fontWeight:'700', textTransform:'none'}} endIcon={<KeyboardArrowDownRoundedIcon/>}>
+                <Button href='/AboutUs' sx={{color:'#000', fontWeight:'700', textTransform:'none'}} endIcon={<KeyboardArrowDownRoundedIcon/>}>
                     About us
                 </Button>
-                <Button sx={{color:'#000', fontWeight:'700', textTransform:'none'}} endIcon={<KeyboardArrowDownRoundedIcon/>}>
+                <Button href='/ContactUs' sx={{color:'#000', fontWeight:'700', textTransform:'none'}} endIcon={<KeyboardArrowDownRoundedIcon/>}>
                     Contact us
                 </Button>
                 <Button sx={{color:'#000', fontWeight:'700', textTransform:'none'}} endIcon={<KeyboardArrowDownRoundedIcon/>}>

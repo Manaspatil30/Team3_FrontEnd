@@ -93,8 +93,7 @@ const AdminHome = () => {
 
   return (
     <>
-      <AdminTopBar/>
-      <Box />
+      {/* <AdminTopBar/> */}
       <Box sx={{display: 'flex', flexDirection: 'column'}}>
         <AdminSideBar/>
         <Grid container spacing={2} >

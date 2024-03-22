@@ -79,14 +79,10 @@ export default function AdminSideBar() {
 
   return (
     <Box sx={{ display: 'flex' }}>
-      <CssBaseline />
 
-      <Drawer variant="permanent" open={open}>
-        <DrawerHeader>
-
-        </DrawerHeader>
+      <Drawer sx={{'& .css-12i7wg6-MuiPaper-root-MuiDrawer-paper' : {top:'20%', position:'sticky', zIndex:'0'}}} variant="permanent" open={open}>
         <Divider />
-        <List>
+        <List >
         <ListItem  disablePadding sx={{ display: 'block' }} onClick={() => {navigate('/admin')}}>
               <ListItemButton
                 sx={{
@@ -187,8 +183,6 @@ export default function AdminSideBar() {
                 <ListItemText primary='Admins' sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
         </ListItem>
-        
-
         </List>
 
       </Drawer>

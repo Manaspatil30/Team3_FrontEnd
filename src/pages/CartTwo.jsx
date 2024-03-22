@@ -10,7 +10,7 @@ const products = [
   { id: 3, name: 'Tesco Basmati Rice', image: 'https://i.imgur.com/MK9Tmso.jpeg', price: 10 },
 ];
 
-const Cart = ({carttwo}) => {
+const Cart = () => {
   const [cart, setCart] = useState(products.map(product => ({ ...product, quantity: 0 })));
 
   const handleQuantityChange = (id, increment) => {

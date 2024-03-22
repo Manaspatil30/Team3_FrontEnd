@@ -26,8 +26,10 @@ import Account from './pages/Account';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ErrorPage from './pages/Error';
-import ContactUs from './pages/ContactUs';
 import Checkout from './pages/Checkout';
+import { Cookie } from '@mui/icons-material';
+import Cookies from 'js-cookie';
+import "react-toastify/dist/ReactToastify.css";
 
 
 function Layout({ children }) {
@@ -44,6 +46,7 @@ function Layout({ children }) {
 
 function App() {
   axios.defaults.baseURL = 'http://localhost:3001/';
+  axios.defaults.headers.common['authorization'] = Cookies.get('jwtToken');
 
 
   return (
@@ -53,7 +56,7 @@ function App() {
       <Container maxWidth='xl'>
         <BrowserRouter>
         <NavbarSearch />
-        {/* <ToastContainer position="top-right"
+        <ToastContainer position="top-right"
 autoClose={5000}
 hideProgressBar={false}
 newestOnTop={false}
@@ -63,7 +66,7 @@ pauseOnFocusLoss
 draggable
 pauseOnHover
 theme="light"
-/> */}
+/>
           <Routes>
             <Route path='/' element={<Home/>}/>
             <Route path='/account/:id' element={<Account/>}/>
@@ -75,6 +78,11 @@ theme="light"
             <Route path='/AboutUs' element={<AboutUs/>}/>
             <Route path='/ContactUs' element={<ContactUs/>}/>
             <Route path='/CartTwo' element={<ShoppingCart/>}/>
+            <Route path='/admin' element={<AdminHome/>}/>
+            <Route path='/admin/sales' element={<Sales/>}/>
+            <Route path='/admin/products' element={<Products/>}/>
+            <Route path='/admin/customers' element={<Customers/>}/>
+            <Route path='/admin/admins' element={<Admins/>}/>
           </Routes>
         </BrowserRouter>
       </Container>

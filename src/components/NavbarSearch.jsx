@@ -27,6 +27,7 @@ import Badge from '@mui/material/Badge';
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 import { useNavigate } from 'react-router-dom';
 import { withParam } from '../utils/Router.Helper';
+import { toast } from 'react-toastify';
 
 const style = {
   position: 'absolute',
@@ -154,14 +155,15 @@ const NavbarSearch = () => {
 
 
   const userLogin = () => {
-    if(validations()){
-      axios.post("signin", loginData).then((data) => {
+    // if(validations()){
+      axios.post("user/signin", loginData).then((data) => {
         Cookies.set("jwtToken", data.data.token, { path: "/" });
         Cookies.set("user_id", data.data.userId, { path: "/" });
         Cookies.set("Fname", data.data.fName, { path: "/" });
         Cookies.set("Lname", data.data.lName, { path: "/" });
-      }).then(() => window.location.reload())
-    }
+        Cookies.set("status", data.data.status, {path: "/"} )
+      }).then(() => window.location.reload()).catch((err) => {toast.error(err.response.data)})
+    // }
   };
 
   console.log('Login info', login)
@@ -283,7 +285,7 @@ const NavbarSearch = () => {
             <Button sx={{backgroundColor:'#4DB528', "&:hover" : {backgroundColor:'#4DB528'}, height:'3.5rem', textTransform:'none', fontWeight:'700'}} variant='contained' startIcon={<FormatAlignLeftRoundedIcon/>} endIcon={<KeyboardArrowDownRoundedIcon/>}>
                 All Categories
             </Button>
-            <Box width={'35%'} display={'flex'} alignItems={'center'} textAlign={'center'} justifyContent={'space-between'}>
+            <Box width={'35%'} display={'flex'} alignItems={'center'} textAlign={'center'} justifyContent={'space-evenly'}>
                 <Button href='/explore' sx={{color:'#000', fontWeight:'700', textTransform:'none'}} endIcon={<KeyboardArrowDownRoundedIcon/>}>
                     Explore
                 </Button>
@@ -296,6 +298,14 @@ const NavbarSearch = () => {
                 <Button href='/blog' sx={{color:'#000', fontWeight:'700', textTransform:'none'}} endIcon={<KeyboardArrowDownRoundedIcon/>}>
                     Blog
                 </Button>
+                {Cookies.get("status") == 'A' ? 
+                
+                <Button href='/admin' sx={{color:'#000', fontWeight:'700', textTransform:'none'}} endIcon={<KeyboardArrowDownRoundedIcon/>}>
+                    Admin
+                </Button>
+                :
+                <></>
+              }
             </Box>
             <Box display={'flex'} alignItems={'center'}>
             <Button sx={{color:'#4DB528',backgroundColor:'#E7F7F3', "&:hover" : {backgroundColor:'#E7F7F3'}, height:'3.5rem', textTransform:'none', fontWeight:'700'}} variant='contained' startIcon={<BoltOutlinedIcon/>}>

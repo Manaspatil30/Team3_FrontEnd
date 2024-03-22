@@ -93,7 +93,6 @@ const Sales = () => {
 
   return (
     <>
-      <AdminTopBar />
       <Box sx={{ display: 'flex' }}>
         <AdminSideBar />
         <Box component='main' sx={{ flexGrow: 1, p: 3, justifyContent: 'center', paddingTop: '75px', marginLeft: '50px' }}>

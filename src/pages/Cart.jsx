@@ -1,4 +1,4 @@
-{/*import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -74,5 +74,3 @@ const Cart = () => {
 }
 
 export default Cart
-
-*/}

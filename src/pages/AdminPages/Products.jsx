@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import AdminSideBar from '../../components/AdminSideBar';
 import AdminTopBar from '../../components/AdminTopBar';
 import { DataGrid } from '@mui/x-data-grid';
@@ -11,6 +11,8 @@ import DialogTitle from '@mui/material/DialogTitle';
 import TextField from '@mui/material/TextField';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import axios from 'axios';
+import Cookies from 'js-cookie';
 
 
 
@@ -22,9 +24,15 @@ const productData = [
 
 const Products = () => {
   const [products, setProducts] = useState(productData);
+  const [adminProds, setAdminProds] = useState();
   const [open, setOpen] = useState(false);
   const [selectedProductId, setSelectedProductId] = useState(null);
   const [selectedProductForEdit, setSelectedProductForEdit] = useState(null);
+
+  useEffect(()=>{
+    axios.get("adminproducts", Cookies.get("user_id")).then((data) => {setAdminProds(data.data)})
+  })
+  console.log("adminProds", adminProds)
 
   const handleClose = () => {
     setOpen(false);
@@ -95,7 +103,6 @@ const Products = () => {
 
   return (
     <>
-      <AdminTopBar />
       <Box sx={{ display: 'flex' }}>
         <AdminSideBar />
         <Box component='main' sx={{ flexGrow: 1, p: 3, justifyContent: 'center', paddingTop: '75px' }}>

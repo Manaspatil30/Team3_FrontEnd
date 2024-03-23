@@ -509,7 +509,7 @@ const Explore = () => {
           </Grid>
           <Grid sx={{ maxWidth: "1200px"}} container md={9}>
             {
-              filteredProducts.length == 0 ?
+              filteredProducts ?
               // @ts-ignore
               products?.map((item) => {
                 return (
@@ -520,12 +520,13 @@ const Explore = () => {
                       name={item.product_name}
                       desc={item.description}
                       category={item.category}
+                      store_id = {item.store_id}
                     />
                   </Grid>
                 );
               })
               :
-              filteredProducts?.map((item) => {
+              filteredProducts.map((item) => {
                 return (
                   <Grid item key={item.product_id} xs={12} sm={6} md={4}>
                     {/* <ProductCard id={item.product_id} heading = {item.product_name} description = {item.description}/> */}
@@ -534,6 +535,7 @@ const Explore = () => {
                       name={item.product_name}
                       desc={item.description}
                       category={item.category}
+                      store_id = {item.store_id}
                     />
                   </Grid>
                 );

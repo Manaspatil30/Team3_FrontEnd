@@ -7,19 +7,21 @@ import { Button, CardActionArea, IconButton, TextField } from '@mui/material';
 import grocery from "../images/grocery.jpeg"
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import axios from 'axios';
+import Cookies from 'js-cookie';
 
 
 const ProductCard = (props) => {
     const [quantity, setQuantity] = useState(1);
 
     const data = {
+      "userId" : Cookies.get("user_id"),
         "product_id" : props.id,
-        "price" : 100,
-        "quantity" : quantity
+        "quantity" : quantity,
+        "storeId" : props.storeId
     }
 
     const addToBasket = () => {
-        axios.post(`basket/1`, data).then(()=>{alert('Product Added to Basket')}).then(()=>{window.location.reload()})
+        axios.post(`basket/add`, data).then(()=>{alert('Product Added to Basket')}).then(()=>{window.location.reload()})
     }
 
     return (

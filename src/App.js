@@ -73,7 +73,7 @@ theme="light"
             <Route path='/explore' element={<Explore/>}/>
             <Route path='/signUp' element={<Signup/>}/>
             {/*<Route path='/Cart' element={<Cart/>}/> */}
-            <Route path='/productdetails/:id' element={<ProductPage/>}/>
+            <Route path='/productdetails/:id/:storeid' element={<ProductPage/>}/>
             <Route path='/Error' element={<Error/>}/>
             <Route path='/AboutUs' element={<AboutUs/>}/>
             <Route path='/ContactUs' element={<ContactUs/>}/>

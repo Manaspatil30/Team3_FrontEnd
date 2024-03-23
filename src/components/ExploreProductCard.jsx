@@ -39,14 +39,13 @@ const ExploreProductCard = (props) => {
   }
 
   const data = {
-    "product_id" : props.id,
-    "price" : 100,
+    "userId" : Cookies.get("user_id"),
     "quantity" : quantity
-}
-
-  const addToBasket = () => {
+  }
+  const addToBasket = (event) => {
+    event.preventDefault();
     axios
-      .post(`basket/` + Cookies.get("user_id"), data)
+      .post(`basket/add/${props.id}/${props.store_id}`, data)
       .then(() => {
         toast.success("Product Added Successfully");
       })
@@ -71,7 +70,7 @@ const ExploreProductCard = (props) => {
         borderRadius: "18px",
       }}
     >
-      <Link to={'/productdetails/'+props.id} style={{color: 'inherit', textDecoration: 'inherit'}}>
+      <Link to={`/productdetails/${props.id}/${props.store_id}`} style={{color: 'inherit', textDecoration: 'inherit'}}>
       <CardContent>
         <div
           style={{ width: "100%", paddingTop: "100%", position: "relative" }}

@@ -45,6 +45,19 @@
     width: 80%;
     max-width: 300px;
     z-index: 1;
+    background-color: transparent;
   }
+  
+  .image-container {
+    display: flex;
+    justify-content: center; /* Horizontally center */
+    align-items: center; /* Vertically center */
+    height: 100%; /* Ensure container takes full height of slider */
+  }
+
+  .shop-now-button {
+    background-color: green !important;
+  }
+  
   
   

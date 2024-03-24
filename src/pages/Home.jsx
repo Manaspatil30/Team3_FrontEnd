@@ -18,7 +18,7 @@ const Home = () => {
         {/* <SlickSlider/> */}
         <Advertise1/>
         <CategorySection/>
-        <Advertise2/>
+        {/*<Advertise2/> */}
         <CompareSection/>
         <DealsSection/>
         {/* <Grid container mt={'10%'} mb={'10%'}>

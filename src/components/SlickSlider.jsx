@@ -1,22 +1,18 @@
 import React from "react";
 import Slider from "react-slick";
-import "slick-carousel/slick/slick.css"
-import "slick-carousel/slick/slick-theme.css"
-import Item from "./Item";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import "../styles/slider.css"
+import { Button } from "@mui/material";
+import "../styles/slider.css";
 
 var items = [
     {
-        name: "Random Name #1",
-        image:"https://i.imgur.com/i3mtRmb.jpeg",
-        description: "Random Description 1"
+        image:"https://i.imgur.com/ygECDHo.jpeg"
     },
     {
-        name: "Random Name #2",
-        image:"https://i.imgur.com/XPCvLgf.jpeg",
-        description: "Random Description 2"
+        image:"https://i.imgur.com/JPtoQnj.jpeg"
     }
 ]
 
@@ -36,14 +32,19 @@ const SlickSlider = () => {
   return (
     <div>
         <Slider {...settings}>
-          {items.map((item) => {
-            return(
-                <Item item={item}/>
-            )
-          })}
+          {items.map((item, index) => (
+            <div key={index} className="slick-slide">
+              <img src={item.image} alt={`Slide ${index}`} className="slick-image" />
+              <div className="slick-caption">
+                <Button variant="contained" color="success" href="/Explore" className="shop-now-button">
+                  Shop Now
+                </Button>
+              </div>
+            </div>
+          ))}
         </Slider>
       </div>
   )
 }
 
-export default SlickSlider
+export default SlickSlider;

@@ -1,49 +1,69 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Slider from "react-slick";
-import "slick-carousel/slick/slick.css"
-import "slick-carousel/slick/slick-theme.css"
-import Item from "./Item";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import "../styles/slider.css"
+import { Button } from "@mui/material";
+import "../styles/slider.css";
 
 var items = [
     {
-        name: "Random Name #1",
-        image:"https://i.imgur.com/i3mtRmb.jpeg",
-        description: "Random Description 1"
+        image:"https://i.imgur.com/ygECDHo.jpeg"
     },
     {
-        name: "Random Name #2",
-        image:"https://i.imgur.com/XPCvLgf.jpeg",
-        description: "Random Description 2"
+        image:"https://i.imgur.com/JPtoQnj.jpeg"
     }
 ]
 
 const SlickSlider = () => {
+  const sliderRef = useRef(null);
+  const [sliderHeight, setSliderHeight] = useState(0);
 
-    const settings = {
-        dots: true,
-        infinite: true,
-        speed: 400,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        autoplay:true,
-        nextArrow: <NavigateNextIcon />,
-        prevArrow: <ArrowBackIosIcon />
+  useEffect(() => {
+    // Calculate the maximum height among the images
+    let maxHeight = 0;
+    items.forEach(item => {
+      const img = new Image();
+      img.src = item.image;
+      img.onload = () => {
+        if (img.height > maxHeight) {
+          maxHeight = img.height;
+          setSliderHeight(maxHeight);
+        }
       };
+    });
+  }, []);
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 400,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay:true,
+    nextArrow: <NavigateNextIcon />,
+    prevArrow: <ArrowBackIosIcon />,
+    // Set the adaptive height option to true
+    adaptiveHeight: true
+  };
 
   return (
-    <div>
-        <Slider {...settings}>
-          {items.map((item) => {
-            return(
-                <Item item={item}/>
-            )
-          })}
-        </Slider>
-      </div>
-  )
-}
+    <div style={{height: sliderHeight}}>
+      <Slider ref={sliderRef} {...settings}>
+        {items.map((item, index) => (
+          <div key={index} className={`slick-slide ${index === 1 ? 'custom-slide' : ''}`}>
+            <img src={item.image} alt={`Slide ${index}`} className="slick-image" />
+            <div className="slick-caption">
+              <Button variant="contained" color="success" href={index === 1 ? '/custom-link' : '/default-link'} className="shop-now-button">
+                Shop Now
+              </Button>
+            </div>
+          </div>
+        ))}
+      </Slider>
+    </div>
+  );
+};
 
-export default SlickSlider
+export default SlickSlider;

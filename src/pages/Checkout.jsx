@@ -72,6 +72,7 @@ const Checkout = ({ productsInCart }) => {
           fullWidth
           size="large"
           style={{ marginBottom: '20px', borderColor: 'green' }} 
+          href='/success'
         >
           Place Order
         </Button>

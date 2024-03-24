@@ -134,7 +134,7 @@ const ProductDetailsCard = (props) => {
           <Card style={{  border: 'none', boxShadow: 'none' }}>
             <CardContent>
               <Typography variant="h3" color='black' gutterBottom style={{ fontWeight: 'bold' }}>
-                {productDetail ? productDetail[0].productname : ""}
+              {productDetail ? productDetail[0].storeName : ""} {productDetail ? productDetail[0].productname : ""}
               </Typography>
               <Typography variant="body1" color="text.secondary" style={{ paddingBottom: '10px'}}>
                 {productDetail ? productDetail[0].description : ""}
@@ -166,7 +166,7 @@ const ProductDetailsCard = (props) => {
             <Card style={{ marginBottom:'10px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
               <CardContent>
                   <Typography variant="h6" component="div" gutterBottom>
-                  {productDetail ? productDetail[1].productname : ""}
+                  {productDetail ? productDetail[1].storeName : ""} {productDetail ? productDetail[1].productname : ""}
                   </Typography>
                   <div style={{ width: '100%', paddingTop: '100%', position: 'relative'}}>
                     <CardMedia
@@ -197,7 +197,8 @@ const ProductDetailsCard = (props) => {
               <Card style={{ marginBottom:'10px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
               <CardContent>
                   <Typography variant="h6" component="div" gutterBottom>
-                  {productDetail ? productDetail[2].productname : ""}
+                  {productDetail ? productDetail[2].storeName : ""} {productDetail ? productDetail[2].productname : ""}
+                  {/* {checkStore(productDetail ? productDetail[2].store_id : "")} */}
                   </Typography>
                   <div style={{ width: '100%', paddingTop: '100%', position: 'relative'}}>
                     <CardMedia

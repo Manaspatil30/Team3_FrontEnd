@@ -207,40 +207,6 @@ const NavbarSearch = () => {
         </Select> */}
         <form onSubmit={submit}>
         <Box display={'flex'} alignItems={'center'}>
-            {/* <Select
-            sx={{width:'8rem', height:'2.5rem',}}
-            label = "Location"
-            >
-                <MenuItem
-                    // key={}
-                    // value={}
-                >
-                <ListItemIcon sx={{minWidth: 36}}>
-                    <LocationOnIcon/>
-                </ListItemIcon>
-                B16 9DP
-                </MenuItem>
-
-                <MenuItem
-                    // key={}
-                    // value={}
-                >
-                <ListItemIcon sx={{minWidth: 36}}>
-                    <LocationOnIcon/>
-                </ListItemIcon>
-                B16 9DP
-                </MenuItem>
-
-                <MenuItem
-                    // key={}
-                    // value={}
-                >
-                <ListItemIcon sx={{minWidth: 36}}>
-                    <LocationOnIcon/>
-                </ListItemIcon>
-                B16 9DP
-                </MenuItem>
-            </Select> */}
           <Search>
             <SearchIconWrapper>
               <SearchIcon/>
@@ -254,7 +220,7 @@ const NavbarSearch = () => {
         </Box>
         </form>
         <Box display={'flex'} alignItems={'center'}>
-            <IconButton href='/cart'>
+            <IconButton href='/CartTwo'>
               {/* @ts-ignore */}
             <Badge badgeContent={basketBadge?.length} color="primary">
                 <ShoppingCartOutlinedIcon/>

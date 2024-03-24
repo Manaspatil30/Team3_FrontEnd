@@ -67,7 +67,6 @@ const Signup = () => {
   }
 
   const addUser = () => {
-    // if(validations()){
       axios.post('user/add', data)
       .then(()=>{
         toast.success("User Added Successfully")
@@ -75,9 +74,7 @@ const Signup = () => {
       .catch((err)=>{
         toast.error("Failed to add User")
       })
-
-  // }
-}
+  }
 
 
 

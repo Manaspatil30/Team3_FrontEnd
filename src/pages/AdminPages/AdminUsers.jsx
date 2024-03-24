@@ -16,6 +16,7 @@ import AdminSideBar from '../../components/AdminSideBar';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
+import { toast } from 'react-toastify';
 
 const style = {
     position: 'absolute',
@@ -27,6 +28,8 @@ const style = {
     border: '2px solid #000',
     boxShadow: 24,
     p: 4,
+    display :'flex',
+    flexDirection : 'column',
   };
 
 const columns = [
@@ -64,6 +67,16 @@ const AdminUsers = () => {
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [adminUsers, setAdminUsers] = useState();
 
+  const [firstName, setFirstName] = useState();
+  const [lastName, setLastName] = useState();
+  const [phone, setPhone] = useState();
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+  const [address, setAddress] = useState(null);
+  const [membership, setMembership] = useState(1);
+  const [startDate, setStartDate] = useState();
+  const [endDate, setEndDate] = useState();
+
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - adminUsers?.length) : 0;
@@ -82,7 +95,29 @@ const AdminUsers = () => {
   },[])
   console.log("adminUsers", adminUsers)
 
+  const data = {
+    "first_name" : firstName,
+    "last_name" : lastName,
+    "phone_number" : phone,
+    "email" : email,
+    "address" : address,
+    "MembershipTypeID" : membership,
+    "password" : password,
+    "userType" : "C"
+  }
+
+  const addUser = () => {
+    axios.post('user/add', data)
+    .then(()=>{
+      toast.success("User Added Successfully")
+    })
+    .catch((err)=>{
+      toast.error("Failed to add User")
+    })
+}
+
   return (
+    <>
     <Grid container sx={{margin:"10% 0"}}>
         <Grid sx={{height:'100%'}} item md={3}>
             <AdminSideBar/>
@@ -143,6 +178,29 @@ const AdminUsers = () => {
     <Button variant='contained' onClick={handleOpen}>Add User</Button>
         </Grid>
     </Grid>
+    <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          {/* @ts-ignore */}
+          <TextField required variant='outlined' label='First Name' onChange={(e)=>{setFirstName(e.target.value)}} />
+            {/* @ts-ignore */}
+            <TextField required variant='outlined' label='Last Name' onChange={(e)=>{setLastName(e.target.value)}}/>
+            {/* @ts-ignore */}
+            <TextField required variant='outlined' label='Email' onChange={(e)=>{setEmail(e.target.value)}} />
+            {/* @ts-ignore */}
+            <TextField required variant='outlined' type='number' label='Phone Number' onChange={(e)=>{setPhone(e.target.value)}}/>
+            <TextField required variant='outlined' label='Password' onChange={(e)=>{setPassword(e.target.value)}}/>
+            <TextField variant='outlined' label='Address Line 2'/>
+            <TextField variant='outlined' label='City'/>
+            <TextField variant='outlined' label='Post Code'/>
+            <Button variant='contained' onClick={addUser}>Add</Button>
+        </Box>
+      </Modal>
+    </>
   )
 }
 

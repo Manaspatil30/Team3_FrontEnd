@@ -103,7 +103,7 @@ const Explore = () => {
   useEffect(()=>{
     axios.get("products/category/"+filterValue)
     .then((data) => {setFilteredProducts(data.data)})
-    .then(()=>{console.log(filteredProducts)})
+    .then(()=>{console.log("Filtered",filteredProducts)})
     .catch((err) => {})
   },[filterValue])
 
@@ -509,11 +509,11 @@ const Explore = () => {
           </Grid>
           <Grid sx={{ maxWidth: "1200px"}} container md={9}>
             {
-              filteredProducts ?
+              filteredProducts.length > 0 ?
               // @ts-ignore
-              products?.map((item) => {
+              filteredProducts?.map((item) => {
                 return (
-                  <Grid item key={item.product_id} xs={12} sm={6} md={4}>
+                  <Grid item xs={12} sm={6} md={4}>
                     {/* <ProductCard id={item.product_id} heading = {item.product_name} description = {item.description}/> */}
                     <ExploreProductCard
                       id={item.product_id}
@@ -526,9 +526,9 @@ const Explore = () => {
                 );
               })
               :
-              filteredProducts.map((item) => {
+              products?.map((item) => {
                 return (
-                  <Grid item key={item.product_id} xs={12} sm={6} md={4}>
+                  <Grid item xs={12} sm={6} md={4}>
                     {/* <ProductCard id={item.product_id} heading = {item.product_name} description = {item.description}/> */}
                     <ExploreProductCard
                       id={item.product_id}

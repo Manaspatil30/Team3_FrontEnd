@@ -76,6 +76,7 @@ function App() {
             <Route path='/Cart' element={<Cart/>}/>
             <Route path='/productdetails/:id/:storeid' element={<ProductPage/>}/>
             <Route path='/Error' element={<ErrorPage/>}/>
+            <Route path='/search/:value' element={<SearchPage/>}/>
             <Route path='/AboutUs' element={<AboutUs/>}/>
             <Route path='/ContactUs' element={<ContactUs/>}/>
             <Route path='/success' element={<SuccessPage/>}/>

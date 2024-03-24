@@ -11,11 +11,12 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
-import { Box, Grid, TextField } from '@mui/material';
+import { Box, Grid, MenuItem, Select, TextField } from '@mui/material';
 import AdminSideBar from '../../components/AdminSideBar';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
+import { toast } from 'react-toastify';
 
 const style = {
     position: 'absolute',
@@ -59,9 +60,22 @@ const AdminProducts = () => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const [open1, setOpen1] = React.useState(false);
+  const handleOpen1 = () => setOpen1(true);
+  const handleClose1 = () => setOpen1(false);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [adminProds, setAdminProds] = useState();
+  const [selectedFile, setSelectedFile] = useState();
+  const [pName, setPname] = useState();
+  const [pStore, setpStore] = useState();
+  const [pCategory, setpCategory] = useState();
+  const [pQuantity, setpQuantity] = useState();
+  const [pDesc, setpDesc] = useState();
+  const [pPrice, setpPrice] = useState();
+
+  const [imgStore, setimgStore] = useState();
+  const [imgProd, setimgProd] = useState();
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
@@ -76,10 +90,93 @@ const AdminProducts = () => {
     setPage(0);
   };
 
+  const checkStore = (store) => {
+    if(store == 1){
+      return "Tesco"
+    }
+    if(store == 2){
+      return "Aldi"
+    }
+    if (store == 3){
+      return "Lidl"
+    }
+  }
+
+  
+
   useEffect(()=>{
     axios.get("adminproducts", Cookies.get("user_id")).then((data) => {setAdminProds(data.data)})
   },[])
   console.log("adminProds", adminProds)
+
+
+
+  const productDetail = { 
+    "product_name" : pName, 
+    "description" : pDesc, 
+    "category" : pCategory, 
+    "quantity" : pQuantity, 
+    "store_id" : pStore, 
+    "price" : pPrice
+    }
+
+    const prodImgData = {
+        "store" : imgStore, 
+        "product_id" : imgProd, 
+        "file_url" : selectedFile
+    }
+
+    console.log("img data", prodImgData)
+
+    const handleProductChange = (event) => {
+        const selectedItem = event.target.value;
+    setimgProd(selectedItem.product_id); // Assuming product_id is the property name for product id
+    setimgStore(selectedItem.store_id);
+      };
+
+      const handleUploadimg = () => {
+        // Check if a file is selected
+        if (!selectedFile) {
+          alert('Please select a file.');
+          return;
+        }
+      
+        // Convert the file to a base64-encoded string
+        const fileReader = new FileReader();
+        fileReader.readAsDataURL(selectedFile);
+        fileReader.onload = () => {
+          const base64EncodedFile = fileReader.result.split(',')[1];
+          const prodImgData = {
+            "store": imgStore,
+            "product_id": imgProd,
+            "file_url": base64EncodedFile
+          };
+      
+          axios.post("uploadin", prodImgData)
+            .then(toast.success("Image added successfully"))
+            .catch((err) => {
+              toast.error("Failed to upload image");
+              console.error(err);
+            });
+        };
+      
+        fileReader.onerror = (error) => {
+          console.error('Error reading file:', error);
+        };
+      };
+    
+      const handleFileChange = (event) => {
+        // Get the selected file
+        const file = event.target.files[0];
+        setSelectedFile(file);
+        console.log("file data", selectedFile)
+      };
+
+  const addProduct = () => {
+    axios.post("product/add", productDetail)
+    .then(()=>{toast.success("Product added successfully")})
+    .then(()=>{handleClose()})
+  };
 
   return (
     <>
@@ -141,6 +238,7 @@ const AdminProducts = () => {
       />
     </Paper>
     <Button variant='contained' onClick={handleOpen}>Add Product</Button>
+    <Button variant='contained' onClick={handleOpen1}>Add Product Image</Button>
         </Grid>
     </Grid>
     <Modal
@@ -157,22 +255,37 @@ const AdminProducts = () => {
             type='text'
             name='productName'
             fullWidth
+            onChange={(e)=>{setPname(e.target.value)}}
             // value={selectedProductForEdit?.productName || ''}
           />
-          <TextField
-            margin='dense'
-            label='Category'
-            type='text'
-            name='category'
-            fullWidth
-            // value={selectedProductForEdit?.category || ''}
-          />
+          <Select
+          label="Store"
+          onChange={(e)=>{setpStore(e.target.value)}}
+          fullWidth
+        >
+          <MenuItem value={1}>Tesco</MenuItem>
+          <MenuItem value={2}>Aldi</MenuItem>
+          <MenuItem value={3}>Lidl</MenuItem>
+        </Select>
+          
+          <Select
+          label="Category"
+          onChange={(e)=>{setpCategory(e.target.value)}}
+          fullWidth
+        >
+          <MenuItem value={"Fruits"}>Fruits</MenuItem>
+          <MenuItem value={"Dairy"}>Dairy</MenuItem>
+          <MenuItem value={"Vegetables"}>Vegetables</MenuItem>
+          <MenuItem value={"Bakery"}>Bakery</MenuItem>
+          <MenuItem value={"Meat"}>Meat</MenuItem>
+        </Select>
             <TextField
             margin='dense'
-            label='Stock'
+            label='Quantity'
             type='text'
             name='stock'
             fullWidth
+            onChange={(e)=>{setpQuantity(e.target.value)}}
             // value={selectedProductForEdit?.stock || ''}
           />
           <TextField
@@ -181,17 +294,50 @@ const AdminProducts = () => {
             type='text'
             name='description'
             fullWidth
+            onChange={(e)=>{setpDesc(e.target.value)}}
             // value={selectedProductForEdit?.description || ''}
           />
           <TextField
             margin='dense'
-            label='Benefits'
+            label='Price'
             type='text'
             name='benefits'
             fullWidth
+            onChange={(e)=>{setpPrice(e.target.value)}}
             // value={selectedProductForEdit?.benefits || ''}
           />
-          <span style={{margin:'50px', paddingRight:'10px'}}>Upload Product Image</span><input type="file" style={{color:'red',}}/>
+          <Button variant='contained' sx={{textDecoration:'none'}} onClick={addProduct}> Add </Button>
+          {/* <span style={{margin:'50px', paddingRight:'10px'}}>
+            Upload Product Image
+            </span>
+            <input type="file" onChange={handleFileChange} style={{color:'red',}}/>
+            <button onClick={handleUpload}>Upload</button> */}
+        </Box>
+      </Modal>
+      <Modal
+        open={open1}
+        onClose={handleClose1}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Select
+          label="Products"
+          onChange={handleProductChange}
+          fullWidth
+        >
+            {adminProds?.map((item)=>{
+                return(
+                    <MenuItem value={item}>{checkStore(item.store_id)} {item.product_name}</MenuItem>
+                )
+            })}
+        </Select>
+          
+          <span style={{margin:'50px', paddingRight:'10px'}}>
+            Upload Product Image
+            </span>
+            <input type="file" onChange={handleFileChange} style={{color:'red',}}/>
+            <button onClick={handleUploadimg}>Upload</button>
         </Box>
       </Modal>
     </>

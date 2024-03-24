@@ -5,7 +5,6 @@ import ad2 from "../images/ad2.jpg"
 import ad3 from "../images/grocery-bag.png"
 import ad4 from "../images/plate.png"
 import ArrowForwardRoundedIcon from '@mui/icons-material/ArrowForwardRounded';
-import Aos from 'aos';
 import { TypeAnimation } from 'react-type-animation';
 
 const Advertise1 = () => {

@@ -3,7 +3,7 @@ import React from 'react';
 import ad3 from "../images/ad3.jpg";
 import ad4 from "../images/ad4.jpg";
 import ArrowForwardRoundedIcon from '@mui/icons-material/ArrowForwardRounded';
-import '../styles/animations.css';
+// import '../styles/animations.css';
 
 const Advertise2 = () => {
   return (

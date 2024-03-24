@@ -8,6 +8,7 @@ import { Chart } from "react-google-charts";
 import money from "../../images/money.png"
 import delivery from "../../images/delivery.png"
 import outofstock from "../../images/outofstock.png"
+import AdminSideBar from '../../components/AdminSideBar';
 
 export const LineChartdata = [
   ["Day", "Sales", "Deliveries"],

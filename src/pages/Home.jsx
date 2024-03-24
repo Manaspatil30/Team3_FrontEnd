@@ -5,10 +5,10 @@ import CategorySection from "../components/CategorySection";
 import ExploreProductCard from "../components/ExploreProductCard";
 import Advertise1 from "../components/Advertise1";
 import Advertise2 from "../components/Advertise2";
-import Advertise3 from "../components/Advertise3";
+// import Advertise3 from "../components/Advertise3";
 import CompareSection from "../components/CompareSection";
 import DealsSection from "../components/DealsSection";
-import DisplaySection from "../components/DisplaySection";
+// import DisplaySection from "../components/DisplaySection";
 
 
 const Home = () => {

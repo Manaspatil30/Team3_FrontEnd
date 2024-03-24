@@ -22,8 +22,7 @@ const Footer = () => {
                   About Us
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  We are XYZ company, dedicated to providing the best service to our
-                  customers.
+                  We are Unikart, a grocery website built for students.
                 </Typography>
               </Grid>
               <Grid item xs={12} sm={4} sx={{textAlign:'center'}}>
@@ -31,10 +30,10 @@ const Footer = () => {
                   Contact Us
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  123 Main Street, Anytown, USA
+                  City Centre, Birmingham, UK
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  Email: info@example.com
+                  Email: 190074368@aston.ac.uk
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
                   Phone: +1 234 567 8901
@@ -66,7 +65,7 @@ const Footer = () => {
                 {"Copyright © "}
                 <Link color="inherit" href="https://your-website.com/">
                   Your Website
-                </Link>{" "}
+                </Link>{""}
                 {new Date().getFullYear()}
                 {"."}
               </Typography>

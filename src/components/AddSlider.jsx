@@ -9,35 +9,50 @@ import SliderCard from "./SliderCard";
 
 var items = [
     {
-        name: "Random Name #1",
+        name: "Aldi Onions",
         image:"https://i.imgur.com/fkYsC90.jpeg",
-        description: "Random Description 1"
+        description: "£0.55"
     },
     {
-        name: "Random Name #2",
+        name: "Lidl Onions",
         image:"https://i.imgur.com/5d7oXIw.jpeg",
-        description: "Random Description 2"
+        description: "£0.58"
     },
     {
-        name: "Random Name #3",
+        name: "Tesco Onions",
         image:"https://i.imgur.com/tQGINzF.jpeg",
-        description: "Random Description 3"
+        description: "£0.60"
     },
     {
-        name: "Random Name #4",
+        name: "Aldi Potatoes",
         image:"https://i.imgur.com/7SdCHph.jpeg",
-        description: "Random Description 1"
+        description: "£0.85"
     },
     {
-        name: "Random Name #5",
+        name: "Lidl Potatoes",
         image:"https://i.imgur.com/bRc32Vi.jpeg",
-        description: "Random Description 2"
+        description: "£0.88"
     },
     {
-        name: "Random Name #6",
+        name: "Tesco Potatoes",
         image:"https://i.imgur.com/pROYUkM.jpeg",
-        description: "Random Description 3"
-    }
+        description: "£0.90"
+    },
+    {
+      name: "Aldi Salmon",
+      image:"https://i.imgur.com/aFo4UIH.jpeg",
+      description: "£4.90"
+  },
+  {
+      name: "Lidl Salmon",
+      image:"https://i.imgur.com/Uwqb3Xt.jpeg",
+      description: "£4.95"
+  },
+  {
+      name: "Tesco Salmon",
+      image:"https://i.imgur.com/brJsLTY.jpeg",
+      description: "£5.00"
+  }
     
     
 ]
@@ -48,8 +63,8 @@ const AddSlider = () => {
         infinite: true,
         autoplay: true,
         speed: 500,
-        slidesToShow: 4,
-        slidesToScroll: 1,
+        slidesToShow: 3,
+        slidesToScroll: 3,
         initialSlide: 0,
         nextArrow: <NavigateNextIcon />,
         prevArrow: <ArrowBackIosIcon />,

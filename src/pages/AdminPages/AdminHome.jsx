@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import { Box, Grid, Typography, Card, CardContent, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Dialog, DialogContent, DialogActions, Button } from "@mui/material";
-import AdminSideBar from '../../components/AdminSideBar';
-import AdminTopBar from '../../components/AdminTopBar';
 import PointOfSaleIcon from '@mui/icons-material/PointOfSale';
 import LocalShippingOutlinedIcon from '@mui/icons-material/LocalShippingOutlined';
 import DisabledByDefaultIcon from '@mui/icons-material/DisabledByDefault';
@@ -10,7 +8,6 @@ import { Chart } from "react-google-charts";
 import money from "../../images/money.png"
 import delivery from "../../images/delivery.png"
 import outofstock from "../../images/outofstock.png"
-
 
 export const LineChartdata = [
   ["Day", "Sales", "Deliveries"],
@@ -100,11 +97,11 @@ const AdminHome = () => {
         </Grid>
         <Grid item md={9}>
         <Grid container spacing={2} >
-          <Grid width={'100%'}>
+          <Grid item xl={12} md={4}>
 
-            <Box sx={{ display: 'flex', justifyContent: 'space-between', margin: '0px 30px 30px 30px', paddingLeft:'200px' }}>
+            <Box sx={{ display: 'flex', justifyContent: 'space-between', margin: '0px 30px 30px 30px', paddingLeft:'200px', width:'1250px' }}>
               <Card
-                sx={{ paddingTop:'30px', paddingBottom: '10px', cursor: 'pointer', width: 'calc(33.33% - 20px)', backgroundImage:`url(${money})`}}
+                sx={{ paddingTop:'30px', paddingBottom: '10px', cursor: 'pointer', width: '300px', backgroundImage:`url(${money})`}}
                 onClick={handleOpenSalesDialog}
               >
                 
@@ -117,7 +114,7 @@ const AdminHome = () => {
 
 
               <Card
-                sx={{ paddingTop:'30px', paddingBottom: '10px', backgroundColor: 'SaddleBrown', cursor: 'pointer', width: 'calc(33.33% - 20px)', backgroundImage:`url(${delivery})` ,backgroundSize: 'cover'}}
+                sx={{ paddingTop:'30px', paddingBottom: '10px', cursor: 'pointer', width: '300px', backgroundImage:`url(${delivery})` ,backgroundSize: 'cover'}}
                 onClick={handleOpenDeliveryDialog}
               >
                 <CardContent>
@@ -128,7 +125,7 @@ const AdminHome = () => {
                 </CardContent>
               </Card>
               <Card
-                sx={{ paddingTop:'30px', paddingBottom: '10px', backgroundColor: 'Maroon', cursor: 'pointer', width: 'calc(33.33% - 20px)',backgroundImage:`url(${outofstock})` ,backgroundSize: 'cover', backgroundPosition:'center' }}
+                sx={{ paddingTop:'30px', paddingBottom: '10px', cursor: 'pointer', width: '300px',backgroundImage:`url(${outofstock})` ,backgroundSize: 'cover', backgroundPosition:'center' }}
                 onClick={handleOpenOutOfStockDialog}
               >
                 <CardContent>

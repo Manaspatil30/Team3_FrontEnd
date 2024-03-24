@@ -104,9 +104,9 @@ const Products = () => {
   return (
     <>
       <Box sx={{ display: 'flex' }}>
-        <AdminSideBar />
-        <Box component='main' sx={{ flexGrow: 1, p: 3, justifyContent: 'center', paddingTop: '75px' }}>
-          <div style={{ height: 750, width: '100%' }}>
+        
+        <Box component='main' sx={{ flexGrow: 1, p: 3, justifyContent: 'center', paddingTop: '0px' }}>
+          <div style={{ height: 750, width: '100%' ,paddingLeft:'180px'}}>
             <Button color= 'secondary' variant='contained' onClick={handleOpen}>Add Product</Button>
             <DataGrid
               rows={products}

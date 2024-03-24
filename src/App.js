@@ -14,8 +14,7 @@ import { Container, ThemeProvider } from '@mui/material';
 import theme from "./utils/theme";
 import "./styles/app.css";
 import ProductPage from './pages/ProductPage';
-import Error from './pages/Error'
-import ContactUs from './pages/ContactUs'
+import ContactUs from './pages/ContactUs';
 import AdminHome from './pages/AdminPages/AdminHome';
 import Products from './pages/AdminPages/Products';
 import Customers from './pages/AdminPages/Customers';
@@ -50,7 +49,6 @@ function Layout({ children }) {
 function App() {
   axios.defaults.baseURL = 'http://localhost:3001/';
   axios.defaults.headers.common['authorization'] = Cookies.get('jwtToken');
-
 
   return (
     <div className="app">

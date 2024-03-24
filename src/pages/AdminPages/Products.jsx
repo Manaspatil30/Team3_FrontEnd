@@ -31,7 +31,7 @@ const Products = () => {
 
   useEffect(()=>{
     axios.get("adminproducts", Cookies.get("user_id")).then((data) => {setAdminProds(data.data)})
-  })
+  },[])
   console.log("adminProds", adminProds)
 
   const handleClose = () => {

@@ -30,6 +30,9 @@ import Checkout from './pages/Checkout';
 import { Cookie } from '@mui/icons-material';
 import Cookies from 'js-cookie';
 import "react-toastify/dist/ReactToastify.css";
+import SuccessPage from './pages/SuccessPage';
+import AdminProducts from './pages/AdminPages/AdminProducts';
+import AdminUsers from './pages/AdminPages/AdminUsers';
 
 
 function Layout({ children }) {
@@ -57,31 +60,33 @@ function App() {
         <BrowserRouter>
         <NavbarSearch />
         <ToastContainer position="top-right"
-autoClose={5000}
-hideProgressBar={false}
-newestOnTop={false}
-closeOnClick
-rtl={false}
-pauseOnFocusLoss
-draggable
-pauseOnHover
-theme="light"
-/>
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
           <Routes>
             <Route path='/' element={<Home/>}/>
             <Route path='/account/:id' element={<Account/>}/>
             <Route path='/explore' element={<Explore/>}/>
             <Route path='/signUp' element={<Signup/>}/>
-            {/*<Route path='/Cart' element={<Cart/>}/> */}
+            <Route path='/Cart' element={<Cart/>}/>
             <Route path='/productdetails/:id/:storeid' element={<ProductPage/>}/>
             <Route path='/Error' element={<Error/>}/>
             <Route path='/AboutUs' element={<AboutUs/>}/>
             <Route path='/ContactUs' element={<ContactUs/>}/>
+            <Route path='/success' element={<SuccessPage/>}/>
             <Route path='/CartTwo' element={<ShoppingCart/>}/>
+            <Route path='/checkout' element={<Checkout/>}/>
             <Route path='/admin' element={<AdminHome/>}/>
             <Route path='/admin/sales' element={<Sales/>}/>
-            <Route path='/admin/products' element={<Products/>}/>
-            <Route path='/admin/customers' element={<Customers/>}/>
+            <Route path='/admin/products' element={<AdminProducts/>}/>
+            <Route path='/admin/customers' element={<AdminUsers/>}/>
             <Route path='/admin/admins' element={<Admins/>}/>
           </Routes>
         </BrowserRouter>

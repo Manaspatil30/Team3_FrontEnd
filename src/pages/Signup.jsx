@@ -10,7 +10,7 @@ const Signup = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [address, setAddress] = useState(null);
-  const [membership, setMembership] = useState(null);
+  const [membership, setMembership] = useState(1);
   const [startDate, setStartDate] = useState();
   const [endDate, setEndDate] = useState();
   const [error, setError] = useState();

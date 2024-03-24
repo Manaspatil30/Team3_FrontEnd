@@ -94,8 +94,11 @@ const AdminHome = () => {
   return (
     <>
       {/* <AdminTopBar/> */}
-      <Box sx={{display: 'flex', flexDirection: 'column'}}>
+      <Grid container>
+        <Grid item md={3}>
         <AdminSideBar/>
+        </Grid>
+        <Grid item md={9}>
         <Grid container spacing={2} >
           <Grid width={'100%'}>
 
@@ -140,8 +143,8 @@ const AdminHome = () => {
         <Box sx={{ display: 'flex', justifyContent: 'flex-end', width:'100%', }}>
           <Chart
             chartType="LineChart"
-            width={700}
-            height={500}
+            width={300}
+            height={300}
             data={LineChartdata}
             options={Lineoptions}
             style={{ backgroundColor: '#f0f0f0', marginRight: '20px' }}
@@ -152,11 +155,12 @@ const AdminHome = () => {
             chartType="PieChart"
             data={PieChartdata}
             options={Pieoptions}
-            width={600}
-            height={500}
+            width={300}
+            height={300}
           />
         </Box>
-      </Box>
+        </Grid>
+      </Grid>
       
       
       <Dialog

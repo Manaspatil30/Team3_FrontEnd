@@ -56,7 +56,7 @@ const columns = [
   ];
 
 
-const Admins = () => {
+const AdminUsers = () => {
     const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -78,7 +78,7 @@ const Admins = () => {
   };
 
   useEffect(()=>{
-    axios.get("admins").then((data) => {setAdminUsers(data.data)})
+    axios.get("users").then((data) => {setAdminUsers(data.data)})
   },[])
   console.log("adminUsers", adminUsers)
 
@@ -146,4 +146,4 @@ const Admins = () => {
   )
 }
 
-export default Admins
+export default AdminUsers

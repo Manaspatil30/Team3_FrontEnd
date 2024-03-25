@@ -114,6 +114,14 @@ const NavbarSearch = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  const [open1, setOpen1] = React.useState(false);
+  const handleOpen1 = () => setOpen1(true);
+  const handleClose1 = () => setOpen1(false);
+
+  const [cardNumber, setCardNumber] = useState('');
+  const [expiryDate, setExpiryDate] = useState('');
+  const [cvv, setCVV] = useState('');
+
   useEffect(() => {
     axios.get('basket/' + Cookies.get('user_id'))
     .then((data) => {
@@ -162,6 +170,7 @@ const NavbarSearch = () => {
         Cookies.set("Fname", data.data.fName, { path: "/" });
         Cookies.set("Lname", data.data.lName, { path: "/" });
         Cookies.set("status", data.data.status, {path: "/"} )
+        Cookies.set("membership", data.data.membership, {path: "/"})
       }).then(() => window.location.reload()).catch((err) => {toast.error(err.response.data)})
     // }
   };
@@ -183,6 +192,31 @@ const NavbarSearch = () => {
   const submit = () => {
     navigate("/search/"+searchValue)
   }
+
+  const handleCardNumberChange = (event) => {
+    setCardNumber(event.target.value);
+  };
+
+  const handleExpiryDateChange = (event) => {
+    setExpiryDate(event.target.value);
+  };
+
+  const handleCVVChange = (event) => {
+    setCVV(event.target.value);
+  };
+
+  const handleSubmit = () => {
+    // Here you can implement your logic to process the order
+
+    // console.log('Order placed with card details:', { cardNumber, expiryDate, cvv });
+    axios.post("change-membership", {"userId" : Cookies.get("user_id")})
+    .then(toast.success("Congratulations!"))
+    .then(Cookies.set("membership", 2))
+    // Reset the form after submission
+    setCardNumber('');
+    setExpiryDate('');
+    setCVV('');
+  };
 
 
   return (
@@ -248,7 +282,7 @@ const NavbarSearch = () => {
             </Box>
           </Box>
           <Box width={'100%'} display={'flex'} alignItems={'center'} justifyContent={'space-between'} mb={2} >
-            <Button sx={{backgroundColor:'#4DB528', "&:hover" : {backgroundColor:'#4DB528'}, height:'3.5rem', textTransform:'none', fontWeight:'700'}} variant='contained' startIcon={<FormatAlignLeftRoundedIcon/>} endIcon={<KeyboardArrowDownRoundedIcon/>}>
+            <Button sx={{backgroundColor:'#4DB528',visibility:'hidden', "&:hover" : {backgroundColor:'#4DB528'}, height:'3.5rem', textTransform:'none', fontWeight:'700'}} variant='contained' startIcon={<FormatAlignLeftRoundedIcon/>} endIcon={<KeyboardArrowDownRoundedIcon/>}>
                 All Categories
             </Button>
             <Box width={'35%'} display={'flex'} alignItems={'center'} textAlign={'center'} justifyContent={'space-evenly'}>
@@ -261,12 +295,9 @@ const NavbarSearch = () => {
                 <Button href='/ContactUs' sx={{color:'#000', fontWeight:'700', textTransform:'none'}} endIcon={<KeyboardArrowDownRoundedIcon/>}>
                     Contact us
                 </Button>
-                <Button href='/blog' sx={{color:'#000', fontWeight:'700', textTransform:'none'}} endIcon={<KeyboardArrowDownRoundedIcon/>}>
-                    Blog
-                </Button>
                 {Cookies.get("status") == 'A' ? 
                 
-                <Button href='/admin' sx={{color:'#000', fontWeight:'700', textTransform:'none'}} endIcon={<KeyboardArrowDownRoundedIcon/>}>
+                <Button href='/admin/sales' sx={{color:'#000', fontWeight:'700', textTransform:'none'}} endIcon={<KeyboardArrowDownRoundedIcon/>}>
                     Admin
                 </Button>
                 :
@@ -274,9 +305,19 @@ const NavbarSearch = () => {
               }
             </Box>
             <Box display={'flex'} alignItems={'center'}>
-            <Button sx={{color:'#4DB528',backgroundColor:'#E7F7F3', "&:hover" : {backgroundColor:'#E7F7F3'}, height:'3.5rem', textTransform:'none', fontWeight:'700'}} variant='contained' startIcon={<BoltOutlinedIcon/>}>
-                Deal Today
+              {Cookies.get("jwtToken") ? 
+            <Button onClick={handleOpen1} disabled={Cookies.get("membership") == 2} sx={{color:'#4DB528',backgroundColor:'#E7F7F3', "&:hover" : {backgroundColor:'#E7F7F3'}, height:'3.5rem', textTransform:'none', fontWeight:'700'}} variant='contained' startIcon={<BoltOutlinedIcon/>}>
+                {Cookies.get("membership") == 2 ? 
+                  "Unikart plus member"
+                  :
+                   "Get Unikart plus"
+                }
             </Button>
+            :
+            <Button onClick={handleOpen1} sx={{visibility:'hidden',color:'#4DB528',backgroundColor:'#E7F7F3', "&:hover" : {backgroundColor:'#E7F7F3'}, height:'3.5rem', textTransform:'none', fontWeight:'700'}} variant='contained' startIcon={<BoltOutlinedIcon/>}>
+                Get Unikart +
+            </Button>
+              }
             </Box>
           </Box>
           <Modal
@@ -330,7 +371,65 @@ const NavbarSearch = () => {
             </Box>
           </Box>
         </Fade>
-      </Modal>
+          </Modal>
+          <Modal
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
+        open={open1}
+        onClose={handleClose1}
+        closeAfterTransition
+        slots={{ backdrop: Backdrop }}
+        slotProps={{
+          backdrop: {
+            timeout: 500,
+          },
+        }}
+      >
+        <Fade in={open1}>
+          <Box sx={style}>
+            <Typography sx={{ marginBottom: "20px" }} variant="h5">
+              Get Unikart + at just £10 per month
+            </Typography>
+        <form onSubmit={handleSubmit}>
+        <TextField
+          label="Card Number"
+          fullWidth
+          variant="outlined"
+          value={cardNumber}
+          onChange={handleCardNumberChange}
+          style={{ marginBottom: '20px', borderColor: 'green' }}
+        />
+        <TextField
+          label="Expiry Date (MM/YY)"
+          fullWidth
+          variant="outlined"
+          value={expiryDate}
+          onChange={handleExpiryDateChange}
+          style={{ marginBottom: '20px', borderColor: 'green' }} 
+        />
+        <TextField
+          label="CVV"
+          fullWidth
+          variant="outlined"
+          value={cvv}
+          onChange={handleCVVChange}
+          style={{ marginBottom: '20px', borderColor: 'green'}} 
+        />
+        <Button
+          type="submit"
+          variant="contained"
+          color="primary"
+          fullWidth
+          size="large"
+          style={{ marginBottom: '20px', borderColor: 'green' }} 
+          onClick={()=>{handleSubmit(); handleClose1();}}
+        >
+          Place Order
+        </Button>
+      </form>
+          </Box>
+        </Fade>
+          </Modal>
     </Container>
     </AppBar>
    </>

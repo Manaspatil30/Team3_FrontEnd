@@ -1,9 +1,22 @@
-import { Divider, Grid, TextField, Typography, Button } from '@mui/material'
+import { Divider, Grid, TextField, Typography, Button, Modal, Box } from '@mui/material'
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import React, { useEffect, useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify';
 
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+  display :'flex',
+  flexDirection : 'column',
+};
 
 
 const Account = () => {
@@ -18,6 +31,11 @@ const Account = () => {
     const [startDate, setStartDate] = useState();
     const [endDate, setEndDate] = useState();
     const [update, setUpdate] = useState(true);
+    const [oldPass, setOldPass] = useState();
+    const [newPass, setNewPass] = useState();
+    const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
     
     // const formData = new FormData();
     // console.log(formData);
@@ -28,6 +46,18 @@ const Account = () => {
       "phone_number" : phone,
       "email" : email,
       "address" : address,
+    }
+
+    const passwordData = {
+      "oldPassword": oldPass, 
+      "newPassword" : newPass, 
+      "tokenUserId" : Cookies.get("user_id")
+    }
+
+    const changePass = () => {
+      axios.put("user/change-password/"+Cookies.get("user_id"), passwordData)
+      .then(toast.success("Password Changed Successfully"))
+      .then(()=>{window.location.reload()})
     }
 
     console.log("Data", data)
@@ -158,7 +188,23 @@ const Account = () => {
           Done
         </Button>
         }
-        
+        <Button variant='contained' sx={{margin:'10% auto'}} onClick={handleOpen}>Change Password</Button>
+        <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          {/* @ts-ignore */}
+          <TextField required variant='outlined' label='Old Password' sx={{marginBottom:'20px'}} onChange={(e)=>{setOldPass(e.target.value)}} />
+            {/* @ts-ignore */}
+          <TextField required variant='outlined' label='New Password' onChange={(e)=>{setNewPass(e.target.value)}}/>
+          <Box sx={{display:'flex', justifyContent:'center', marginTop:'10px'}}>
+          <Button variant='contained' onClick={changePass} sx={{width:'15%'}}>Submit</Button>
+          </Box>
+        </Box>
+      </Modal>
     </Grid>
     </>
   )

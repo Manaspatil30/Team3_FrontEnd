@@ -69,6 +69,7 @@ const Explore = () => {
   const [products, setProducts] = useState();
   const [filterValue, setFilterValue] = useState(undefined);
   const [filteredProducts, setFilteredProducts] = useState([]);
+  const [price, setPrice] = useState(20);
 
   const handleCheckboxChange = (e) => {
     const { value, checked } = e.target;
@@ -98,7 +99,7 @@ const Explore = () => {
       .get("products")
       .then((data) => setProducts(data.data))
       .catch((err) => {});
-  }, []);
+  }, [filterValue]);
 
   useEffect(()=>{
     axios.get("products/category/"+filterValue)
@@ -106,6 +107,24 @@ const Explore = () => {
     .then(()=>{console.log("Filtered",filteredProducts)})
     .catch((err) => {})
   },[filterValue])
+
+  useEffect(()=>{
+    axios.get("api/grocery-by-price/0/"+price)
+    .then((data)=>{setFilteredProducts(data.data)})
+    .catch((err)=>{})
+  },[price])
+
+  const imgUrl = (item) => {
+    if(item.store_id == 1){
+      return(item.image_url_tesco)
+    }
+    if(item.store_id == 2){
+      return(item.image_url_aldi)
+    }
+    if(item.store_id == 3){
+      return(item.image_url_lidl)
+    }
+  }
 
   console.log(products);
   return (
@@ -276,13 +295,14 @@ const Explore = () => {
                         valueLabelDisplay="auto"
                         aria-label="pretto slider"
                         defaultValue={20}
+                        onChange={(e)=>{setPrice(e.target.value)}}
                       />
                     </Box>
                     {/* <FormHelperText>Be careful</FormHelperText> */}
                   </AccordionDetails>
                 </Accordion>
                 {/* Ratings */}
-                <Accordion
+                {/* <Accordion
                   defaultExpanded
                   sx={{ backgroundColor: "transparent", boxShadow: "none" }}
                 >
@@ -358,12 +378,11 @@ const Explore = () => {
                           }
                         />
                       </FormGroup>
-                      {/* <FormHelperText>Be careful</FormHelperText> */}
                     </FormControl>
                   </AccordionDetails>
-                </Accordion>
+                </Accordion> */}
                 {/* Discount */}
-                <Accordion
+                {/* <Accordion
                   defaultExpanded
                   sx={{ backgroundColor: "transparent", boxShadow: "none" }}
                 >
@@ -429,12 +448,11 @@ const Explore = () => {
                           label="More than 25%"
                         />
                       </FormGroup>
-                      {/* <FormHelperText>Be careful</FormHelperText> */}
                     </FormControl>
                   </AccordionDetails>
-                </Accordion>
+                </Accordion> */}
                 {/* Pack Size */}
-                <Accordion
+                {/* <Accordion
                   defaultExpanded
                   sx={{ backgroundColor: "transparent", boxShadow: "none" }}
                 >
@@ -500,10 +518,9 @@ const Explore = () => {
                           label="1pc"
                         />
                       </FormGroup>
-                      {/* <FormHelperText>Be careful</FormHelperText> */}
                     </FormControl>
                   </AccordionDetails>
-                </Accordion>
+                </Accordion> */}
               </Box>
             </Box>
           </Grid>
@@ -521,6 +538,8 @@ const Explore = () => {
                       desc={item.description}
                       category={item.category}
                       store_id = {item.store_id}
+                      price = {item.price}
+                      img = {imgUrl(item)}
                     />
                   </Grid>
                 );
@@ -536,6 +555,8 @@ const Explore = () => {
                       desc={item.description}
                       category={item.category}
                       store_id = {item.store_id}
+                      price = {item.price}
+                      img = {imgUrl(item)}
                     />
                   </Grid>
                 );

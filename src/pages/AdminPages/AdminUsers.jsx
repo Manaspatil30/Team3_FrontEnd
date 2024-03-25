@@ -60,7 +60,7 @@ const columns = [
 
 
 const AdminUsers = () => {
-    const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [page, setPage] = useState(0);

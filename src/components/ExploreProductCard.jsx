@@ -57,6 +57,18 @@ const ExploreProductCard = (props) => {
       });
   };
 
+  const checkStore = (store) => {
+    if(store == 1){
+      return "Tesco"
+    }
+    if(store == 2){
+      return "Aldi"
+    }
+    if (store == 3){
+      return "Lidl"
+    }
+  }
+
   return (
     <Box mb={3}>
       
@@ -84,7 +96,7 @@ const ExploreProductCard = (props) => {
               height: "100%",
               objectFit: "contain",
             }}
-            image={img}
+            image={props.img}
             alt=""
           />
         </div>
@@ -96,7 +108,7 @@ const ExploreProductCard = (props) => {
           {props.category}
         </Typography>
         <Typography variant="h6" component="div" gutterBottom>
-          {props.name}
+          {checkStore(props.store_id)} {props.name}
         </Typography>
         <div>
           {/* <IoMdStar />
@@ -106,7 +118,7 @@ const ExploreProductCard = (props) => {
           {/* <IoIosStarOutline /> */}
         </div>
         <Typography variant="body2" gutterBottom style={{ color: "green" }}>
-          Price: £3.59
+          Price: £{props.price}
         </Typography>
 
         <Stack direction="row" alignItems="center" spacing={1} width={"100%"}>

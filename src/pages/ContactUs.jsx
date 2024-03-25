@@ -1,24 +1,27 @@
 import React, { useState } from 'react';
 import "../styles/contactus.css";
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const ContactUs = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  });
+  const [name, setName] = useState();
+  const [email, setEmail] = useState();
+  const [message, setMessage] = useState();
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
+  const contactData = {
+    "name" : name, 
+    "email" : email, 
+    "message" : message
+  }
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Needs logic for handling form data
-    console.log('Form submitted:', formData);
-    // Reset form fields after submission
-    setFormData({ name: '', email: '', message: '' });
+    axios.post("contact-us", contactData)
+    .then(toast.success("Thank you for contacting us!"))
+
+    setName('');
+    setEmail('');
+    setMessage('');
+    window.location.reload();
   };
 
   return (
@@ -31,8 +34,7 @@ const ContactUs = () => {
             type="text"
             id="name"
             name="name"
-            value={formData.name}
-            onChange={handleChange}
+            onChange={(e)=>{setName(e.target.value)}}
             required
           />
         </div>
@@ -42,8 +44,7 @@ const ContactUs = () => {
             type="email"
             id="email"
             name="email"
-            value={formData.email}
-            onChange={handleChange}
+            onChange={(e)=>{setEmail(e.target.value)}}
             required
           />
         </div>
@@ -52,8 +53,7 @@ const ContactUs = () => {
           <textarea
             id="message"
             name="message"
-            value={formData.message}
-            onChange={handleChange}
+            onChange={(e)=>{setMessage(e.target.value)}}
             required
           ></textarea>
         </div>

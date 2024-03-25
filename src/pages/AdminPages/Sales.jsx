@@ -12,6 +12,7 @@ import { Checkbox }from '@mui/material/';
 import { FormControlLabel } from '@mui/material/';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import AdminSideBar from '../../components/AdminSideBar';
 
 
 const saleData = [
@@ -91,6 +92,7 @@ const Sales = () => {
 
   return (
     <>
+    <AdminSideBar/>
       <Box sx={{ display: 'flex' }}>
         
         <Box component='main' sx={{ flexGrow: 1, p: 3, justifyContent: 'center', paddingTop: '0px' }}>
@@ -104,7 +106,6 @@ const Sales = () => {
           </div>
         </Box>
       </Box>
-
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>{selectedSaleId ? 'Edit sale' : 'New sale'}</DialogTitle>
         <DialogContent>

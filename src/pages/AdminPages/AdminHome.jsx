@@ -1,267 +1,196 @@
-import React, { useState } from 'react';
-import { Box, Grid, Typography, Card, CardContent, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Dialog, DialogContent, DialogActions, Button } from "@mui/material";
-import PointOfSaleIcon from '@mui/icons-material/PointOfSale';
-import LocalShippingOutlinedIcon from '@mui/icons-material/LocalShippingOutlined';
-import DisabledByDefaultIcon from '@mui/icons-material/DisabledByDefault';
-import Slide from '@mui/material/Slide';
-import { Chart } from "react-google-charts";
-import money from "../../images/money.png"
-import delivery from "../../images/delivery.png"
-import outofstock from "../../images/outofstock.png"
+import * as React from 'react';
+import Paper from '@mui/material/Paper';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TablePagination from '@mui/material/TablePagination';
+import TableRow from '@mui/material/TableRow';
+import { useState } from 'react';
+import { useEffect } from 'react';
+import axios from 'axios';
+import Cookies from 'js-cookie';
+import { Box, Grid, TextField } from '@mui/material';
 import AdminSideBar from '../../components/AdminSideBar';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import Modal from '@mui/material/Modal';
+import { toast } from 'react-toastify';
 
-export const LineChartdata = [
-  ["Day", "Sales", "Deliveries"],
-  ["Monday", 10, 10],
-  ["Tuesday", 13, 11],
-  ["Wednesday", 7, 9],
-  ["Thursday", 5, 2],
-  ["Friday", 22, 11],
-];
+const columns = [
+    { id: 'name',align: 'center', label: 'Product name', minWidth: 170 },
+    { id: 'code',align: 'center', label: 'Quantity', minWidth: 100 },
+    {
+      id: 'population',
+      label: 'Store Name',
+      minWidth: 170,
+      align: 'center',
+      format: (value) => value.toLocaleString('en-US'),
+    },
+  ];
 
-export const PieChartdata = [
-  ["Category", "Sales today"],
-  ["Veg", 5],
-  ["Drinks", 2],
-  ["Diary", 2],
-  ["Meat", 2],
-  ["Fruits", 7],
-  ["Cleaning", 7]
-];
-export const Pieoptions = {
-  title: "Daily Sales by Category",
-};
-
-export const Lineoptions = {
-  title: "Performance",
-  curveType: "function",
-  legend: { position: "bottom" },
-  chartArea: { backgroundColor: '#f0f0f0' }
-};
-
-const Transition = React.forwardRef(function Transition(props, ref) {
-  return <Slide direction="up" ref={ref} {...props} />;
-});
+  const columns1 = [
+    { id: 'name',align: 'center', label: 'Name', minWidth: 170 },
+    { id: 'code',align: 'center', label: 'Email', minWidth: 100 },
+    {
+      id: 'population',
+      label: 'Message',
+      minWidth: 170,
+      align: 'center',
+      format: (value) => value.toLocaleString('en-US'),
+    },
+  ];
 
 const AdminHome = () => {
-  const [openSalesDialog, setOpenSalesDialog] = useState(false);
-  const [openDeliveryDialog, setOpenDeliveryDialog] = useState(false);
-  const [openOutOfStockDialog, setOpenOutOfStockDialog] = useState(false);
+  //1
+    const [page, setPage] = useState(0);
+    const [rowsPerPage, setRowsPerPage] = useState(5);
+    const handleChangePage = (event, newPage) => {
+      setPage(newPage);
+    };
+  
+    const handleChangeRowsPerPage = (event) => {
+      setRowsPerPage(parseInt(event.target.value, 10));
+      setPage(0);
+    };
 
-  const handleOpenSalesDialog = () => {
-    setOpenSalesDialog(true);
-  };
+    //2
+    const [page1, setPage1] = useState(0);
+    const [rowsPerPage1, setRowsPerPage1] = useState(5);
+    const handleChangePage1 = (event, newPage) => {
+      setPage(newPage);
+    };
+  
+    const handleChangeRowsPerPage1 = (event) => {
+      setRowsPerPage(parseInt(event.target.value, 10));
+      setPage(0);
+    };
 
-  const handleCloseSalesDialog = () => {
-    setOpenSalesDialog(false);
-  };
 
-  const handleOpenDeliveryDialog = () => {
-    setOpenDeliveryDialog(true);
-  };
+    const [review , setReview] = useState();
+    const [lowStock, setLowStock] = useState();
 
-  const handleCloseDeliveryDialog = () => {
-    setOpenDeliveryDialog(false);
-  };
+    useEffect(()=>{
+        axios.get("low-stock")
+        .then((data)=>{
+          setLowStock(data.data)
+        })
+    },[])
 
-  const handleOpenOutOfStockDialog = () => {
-    setOpenOutOfStockDialog(true);
-  };
+    useEffect(()=>{
+      axios.get("contact-admin")
+      .then((data) => {
+        setReview(data.data)
+      })
+    },[])
 
-  const handleCloseOutOfStockDialog = () => {
-    setOpenOutOfStockDialog(false);
-  };
+    console.log("Reviews", review)
 
-  const salesData = [
-    { id: 1, saleId: '3133' },
-    { id: 2, saleId: '3134' },
-    { id: 3, saleId: '3134' },
-  ];
-  const deliveryData = [
-    { id: 1, saleId: '3133' },
-    { id: 2, saleId: '3134' },
-    { id: 3, saleId: '3134' },
-  ];
-
-  const outofStockData = [
-    { id: 1, productId: '3133' },
-    { id: 2, productId: '3134' },
-    { id: 3, productId: '31334' },
-  ];
-
+    
   return (
     <>
-      {/* <AdminTopBar/> */}
-      <Grid container>
-        <Grid item md={3}>
-        <AdminSideBar/>
+      <Grid container sx={{margin:"10% 0"}}>
+        <Grid sx={{height:'100%'}} item md={3}>
+            <AdminSideBar/>
         </Grid>
         <Grid item md={9}>
-        <Grid container spacing={2} >
-          <Grid item xl={12} md={4}>
-
-            <Box sx={{ display: 'flex', justifyContent: 'space-between', margin: '0px 30px 30px 30px', paddingLeft:'200px', width:'1250px' }}>
-              <Card
-                sx={{ paddingTop:'30px', paddingBottom: '10px', cursor: 'pointer', width: '300px', backgroundImage:`url(${money})`}}
-                onClick={handleOpenSalesDialog}
-              >
-                
-                <CardContent>
-                  <Typography gutterBottom variant="h5" component="div" color={'white'}>
-                    <PointOfSaleIcon style={{paddingTop:'5px'}}/> <span>Today's Sales</span>
-                  </Typography>
-                </CardContent>
-              </Card>
-
-
-              <Card
-                sx={{ paddingTop:'30px', paddingBottom: '10px', cursor: 'pointer', width: '300px', backgroundImage:`url(${delivery})` ,backgroundSize: 'cover'}}
-                onClick={handleOpenDeliveryDialog}
-              >
-                <CardContent>
-                  <Typography gutterBottom variant="h5" component="div" color={'white'}>
-                    <LocalShippingOutlinedIcon style={{paddingTop:'5px'}}/> <span>Waiting for delivery</span>
-                  </Typography>
-
-                </CardContent>
-              </Card>
-              <Card
-                sx={{ paddingTop:'30px', paddingBottom: '10px', cursor: 'pointer', width: '300px',backgroundImage:`url(${outofstock})` ,backgroundSize: 'cover', backgroundPosition:'center' }}
-                onClick={handleOpenOutOfStockDialog}
-              >
-                <CardContent>
-                  <Typography gutterBottom variant="h5" component="div" color={'white'}>
-                    <DisabledByDefaultIcon style={{paddingTop:'5px'}}/> <span>Products Out of Stock</span>
-                  </Typography>                 
-                </CardContent>
-              </Card>
-            </Box>
-          </Grid>
+        <Typography sx={{marginBottom:3}} variant='h5' fontWeight={700} textAlign={'center'}>Low in Stock</Typography>
+        <Paper sx={{ width: '100%', overflow: 'hidden' }}>
+      <TableContainer sx={{ maxHeight: 440 }}>
+        <Table stickyHeader aria-label="sticky table">
+          <TableHead>
+            <TableRow>
+              {columns.map((column) => (
+                <TableCell
+                  key={column.id}
+                  align={column.align}
+                  style={{ minWidth: column.minWidth }}
+                >
+                  {column.label}
+                </TableCell>
+              ))}
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {lowStock?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              .map((row) => {
+                return (
+                  <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
+                        <TableCell align='center'>
+                          {row.product_name}
+                        </TableCell>
+                        <TableCell align='center'>
+                          {row.quantity}
+                        </TableCell>
+                        <TableCell align='center'>
+                          {row.store_name}
+                        </TableCell>
+                  </TableRow>
+                );
+              })}
+          </TableBody>
+        </Table>
+      </TableContainer>
+      <TablePagination
+        rowsPerPageOptions={[10, 25, 100]}
+        component="div"
+        count={lowStock?.length}
+        rowsPerPage={rowsPerPage}
+        page={page}
+        onPageChange={handleChangePage}
+        onRowsPerPageChange={handleChangeRowsPerPage}
+      />
+        </Paper>
+        <Typography sx={{marginBottom:3, marginTop:3}} variant='h5' fontWeight={700} textAlign={'center'}>Customer reviews</Typography>
+        <Paper sx={{ width: '100%', overflow: 'hidden' }}>
+      <TableContainer sx={{ maxHeight: 440 }}>
+        <Table stickyHeader aria-label="sticky table">
+          <TableHead>
+            <TableRow>
+              {columns1.map((column) => (
+                <TableCell
+                  key={column.id}
+                  align={column.align}
+                  style={{ minWidth: column.minWidth }}
+                >
+                  {column.label}
+                </TableCell>
+              ))}
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {review?.slice(page1 * rowsPerPage1, page1 * rowsPerPage1 + rowsPerPage1)
+              .map((row) => {
+                return (
+                  <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
+                        <TableCell align='center'>
+                          {row.name}
+                        </TableCell>
+                        <TableCell align='center'>
+                          {row.email}
+                        </TableCell>
+                        <TableCell align='center'>
+                          {row.message}
+                        </TableCell>
+                  </TableRow>
+                );
+              })}
+          </TableBody>
+        </Table>
+      </TableContainer>
+      <TablePagination
+        rowsPerPageOptions={[10, 25, 100]}
+        component="div"
+        count={review?.length}
+        rowsPerPage={rowsPerPage1}
+        page={page1}
+        onPageChange={handleChangePage1}
+        onRowsPerPageChange={handleChangeRowsPerPage1}
+      />
+        </Paper>
         </Grid>
-        <Box sx={{ display: 'flex', justifyContent: 'flex-end', width:'100%', }}>
-          <Chart
-            chartType="LineChart"
-            width={300}
-            height={300}
-            data={LineChartdata}
-            options={Lineoptions}
-            style={{ backgroundColor: '#f0f0f0', marginRight: '20px' }}
-            
-
-          />
-          <Chart
-            chartType="PieChart"
-            data={PieChartdata}
-            options={Pieoptions}
-            width={300}
-            height={300}
-          />
-        </Box>
-        </Grid>
-      </Grid>
-      
-      
-      <Dialog
-        open={openSalesDialog}
-        TransitionComponent={Transition}
-        keepMounted
-        onClose={handleCloseSalesDialog}
-      >
-        <DialogContent sx={{ width: '20vw' }}>
-          <Typography variant="h6" gutterBottom component="div">
-            Today's Sales
-          </Typography>
-          <TableContainer>
-            <Table>
-              <TableHead>
-                <TableRow>
-                  <TableCell></TableCell>
-                  <TableCell>Sale ID</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {salesData.map((sale, index) => (
-                  <TableRow key={sale.id}>
-                    <TableCell>{index + 1}</TableCell>
-                    <TableCell>{sale.saleId}</TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleCloseSalesDialog}>Close</Button>
-        </DialogActions>
-      </Dialog>
-
-      <Dialog
-        open={openDeliveryDialog}
-        TransitionComponent={Transition}
-        keepMounted
-        onClose={handleCloseDeliveryDialog}
-      >
-        <DialogContent sx={{ width: '20vw' }}>
-          <Typography variant="h6" gutterBottom component="div">
-            Sales waiting for delivery
-          </Typography>
-          <TableContainer>
-            <Table>
-              <TableHead>
-                <TableRow>
-                  <TableCell></TableCell>
-                  <TableCell>Sale ID</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {deliveryData.map((sale, index) => (
-                  <TableRow key={sale.id}>
-                    <TableCell>{index + 1}</TableCell>
-                    <TableCell>{sale.saleId}</TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleCloseDeliveryDialog}>Close</Button>
-        </DialogActions>
-      </Dialog>
-
-      <Dialog
-        open={openOutOfStockDialog}
-        TransitionComponent={Transition}
-        keepMounted
-        onClose={handleCloseOutOfStockDialog}
-      >
-        <DialogContent sx={{ width: '20vw' }}>
-          <Typography variant="h6" gutterBottom component="div">
-            Products out of stock
-          </Typography>
-          <TableContainer>
-            <Table>
-              <TableHead>
-                <TableRow>
-                  <TableCell></TableCell>
-                  <TableCell>Product ID</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {outofStockData.map((product, index) => (
-                  <TableRow key={product.id}>
-                    <TableCell>{index + 1}</TableCell>
-                    <TableCell>{product.productId}</TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleCloseOutOfStockDialog}>Close</Button>
-        </DialogActions>
-      </Dialog>
+    </Grid>
     </>
   );
 };

@@ -123,9 +123,8 @@ const ProductDetailsCard = (props) => {
           <div style={{ width: '100%', paddingTop: '100%', position: 'relative'}}>
             <CardMedia
               component="img"
-              
               style={{ position: 'absolute', top: 10, width: '100%', height: '100%', objectFit: 'contain' }}
-              image={img} 
+              image={productDetail ? productDetail[0].image_url_tesco : ""} 
               alt=""
             />
           </div>
@@ -173,7 +172,7 @@ const ProductDetailsCard = (props) => {
                     component="img"
               
                     style={{ position: 'absolute', top: 10, width: '100%', height: '100%', objectFit: 'contain' }}
-                    image={img} 
+                    image={productDetail ? productDetail[1].image_url_aldi : ""} 
                     alt=""
                     />
                   </div>
@@ -205,7 +204,7 @@ const ProductDetailsCard = (props) => {
                     component="img"
               
                     style={{ position: 'absolute', top: 10, width: '100%', height: '100%', objectFit: 'contain' }}
-                    image={img} 
+                    image={productDetail ? productDetail[2].image_url_lidl : ""} 
                     alt=""
                     />
                   </div>

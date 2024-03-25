@@ -32,6 +32,7 @@ import "react-toastify/dist/ReactToastify.css";
 import SuccessPage from './pages/SuccessPage';
 import AdminProducts from './pages/AdminPages/AdminProducts';
 import AdminUsers from './pages/AdminPages/AdminUsers';
+import AdminSales from './pages/AdminPages/AdminSales';
 
 
 function Layout({ children }) {
@@ -83,7 +84,7 @@ function App() {
             <Route path='/CartTwo' element={<ShoppingCart/>}/>
             <Route path='/checkout' element={<Checkout/>}/>
             <Route path='/admin' element={<AdminHome/>}/>
-            <Route path='/admin/sales' element={<Sales/>}/>
+            <Route path='/admin/sales' element={<AdminSales/>}/>
             <Route path='/admin/products' element={<AdminProducts/>}/>
             <Route path='/admin/customers' element={<AdminUsers/>}/>
             <Route path='/admin/admins' element={<Admins/>}/>

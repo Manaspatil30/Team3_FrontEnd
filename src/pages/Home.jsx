@@ -20,7 +20,7 @@ const Home = () => {
         <CategorySection/>
         {/*<Advertise2/> */}
         <CompareSection/>
-        <DealsSection/>
+        {/* <DealsSection/> */}
         {/* <Grid container mt={'10%'} mb={'10%'}>
           <Grid item md={6} style={{justifyContent:'center', display:'flex'}}>
             <img className="img1" src={vegetable} alt=""/>

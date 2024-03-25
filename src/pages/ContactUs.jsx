@@ -21,7 +21,6 @@ const ContactUs = () => {
     setName('');
     setEmail('');
     setMessage('');
-    window.location.reload();
   };
 
   return (

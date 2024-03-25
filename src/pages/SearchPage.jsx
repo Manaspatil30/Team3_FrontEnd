@@ -19,6 +19,19 @@ const SearchPage = (props) => {
             toast.error("Could not search Products")
         })
     },[])
+
+    const imgUrl = (item) => {
+      if(item.store_id == 1){
+        return(item.image_url_tesco)
+      }
+      if(item.store_id == 2){
+        return(item.image_url_aldi)
+      }
+      if(item.store_id == 3){
+        return(item.image_url_lidl)
+      }
+    }
+    
   return (
     <Container maxWidth="xl">
         <Box mt={5}>
@@ -36,6 +49,9 @@ const SearchPage = (props) => {
                           name={item.product_name}
                           desc={item.description}
                           category={item.category}
+                          store_id = {item.store_id}
+                          price = {item.price}
+                          img = {imgUrl(item)}
                         />
                       </Grid>
                     );

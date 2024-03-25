@@ -48,7 +48,7 @@ function Layout({ children }) {
 
 
 function App() {
-  axios.defaults.baseURL = 'http://localhost:3001/';
+  axios.defaults.baseURL = 'https://team3-backend.onrender.com/';
   axios.defaults.headers.common['authorization'] = Cookies.get('jwtToken');
 
   return (

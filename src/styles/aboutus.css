@@ -1,0 +1,54 @@
+.about-us {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main-image {
+  text-align: center; /* Align image center horizontally */
+}
+
+.main-image img {
+  width: 70%; /* Ensure the image doesn't exceed its container */
+  height: auto; /* Maintain aspect ratio */
+  display: inline-block; /* Make the image align with the text */
+  margin-bottom: 20px; /* Add some space between image and text */
+}
+
+
+.content {
+  text-align: center;
+  padding: 20px;
+}
+
+.title {
+  color: #ff7f0e; /* Orange color */
+}
+
+.separator {
+  border: none;
+  height: 2px;
+  background-color: #4CAF50; /* Green color */
+  width: 80%; /* Adjust width as needed */
+  margin: 20px auto; /* Adjust margin as needed */
+}
+
+.highlight {
+  font-weight: bold;
+  color: #ff7f0e; /* Orange color */
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animated {
+  animation: slideIn 0.5s ease forwards;
+}

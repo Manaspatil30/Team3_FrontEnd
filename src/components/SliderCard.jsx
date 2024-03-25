@@ -4,7 +4,7 @@ import "../styles/slider.css"
 
 const SliderCard = (props) => {
   return (
-    <div style={{textAlign:'center'}}>
+    <div style={{textAlign:'center', marginTop:'10%'}}>
       <h2>{props.item.name}</h2>
       <div style={{display:'flex', justifyContent:'center'}}>
       <img
@@ -17,8 +17,6 @@ const SliderCard = (props) => {
       <div style={{ marginBottom: "20px" }}>
         <p>{props.item.description}</p>
       </div>
-
-      <Button variant="contained">Check it out!</Button>
     </div>
   );
 }

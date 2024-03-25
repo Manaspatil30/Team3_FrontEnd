@@ -13,6 +13,9 @@ import {
   Checkbox,
   styled,
   Slider,
+  Radio,
+  RadioGroup,
+  Button,
 } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
@@ -70,6 +73,7 @@ const Explore = () => {
   const [filterValue, setFilterValue] = useState(undefined);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [price, setPrice] = useState(20);
+  const [rating, setRating] = useState();
 
   const handleCheckboxChange = (e) => {
     const { value, checked } = e.target;
@@ -114,6 +118,12 @@ const Explore = () => {
     .catch((err)=>{})
   },[price])
 
+  useEffect(()=>{
+    axios.get(`/products/rating/${rating}`)
+    .then((data) => {setFilteredProducts(data.data)})
+    .catch((err)=>{})
+  },[rating])
+
   const imgUrl = (item) => {
     if(item.store_id == 1){
       return(item.image_url_tesco)
@@ -137,13 +147,14 @@ const Explore = () => {
               <Box sx={{ display: "flex", justifyContent: "space-between" }}>
                 <Typography fontWeight={700}>Filters</Typography>
                 <Link
-                  component={Typography}
+                  component={Button}
                   sx={{
                     cursor: "pointer",
                     color: "#4DB528",
                     textTransform: "none",
                   }}
                   fontWeight={700}
+                  onClick={()=>{window.location.reload()}}
                 >
                   Clear all
                 </Link>
@@ -302,7 +313,7 @@ const Explore = () => {
                   </AccordionDetails>
                 </Accordion>
                 {/* Ratings */}
-                {/* <Accordion
+                <Accordion
                   defaultExpanded
                   sx={{ backgroundColor: "transparent", boxShadow: "none" }}
                 >
@@ -316,12 +327,15 @@ const Explore = () => {
                   </AccordionSummary>
                   <AccordionDetails sx={{ padding: 0 }}>
                     <FormControl component="fieldset" variant="standard">
-                      <FormGroup>
+                      <RadioGroup
+                      onChange={(e)=>{setRating(e.target.value)}}
+                      >
                         <FormControlLabel
                           control={
-                            <Checkbox
+                            <Radio
                               //   checked={gilad}
                               //   onChange={handleChange}
+                              value={5}
                               name="5star"
                             />
                           }
@@ -331,9 +345,10 @@ const Explore = () => {
                         />
                         <FormControlLabel
                           control={
-                            <Checkbox
+                            <Radio
                               //   checked={jason}
                               //   onChange={handleChange}
+                              value={4}
                               name="Bakery, Cake & Dairy"
                             />
                           }
@@ -343,9 +358,10 @@ const Explore = () => {
                         />
                         <FormControlLabel
                           control={
-                            <Checkbox
+                            <Radio
                               //   checked={antoine}
                               //   onChange={handleChange}
+                              value={3}
                               name="Beverages"
                             />
                           }
@@ -355,9 +371,10 @@ const Explore = () => {
                         />
                         <FormControlLabel
                           control={
-                            <Checkbox
+                            <Radio
                               //   checked={antoine}
                               //   onChange={handleChange}
+                              value={2}
                               name="Snacks & Branded Foods"
                             />
                           }
@@ -367,9 +384,10 @@ const Explore = () => {
                         />
                         <FormControlLabel
                           control={
-                            <Checkbox
+                            <Radio
                               //   checked={antoine}
                               //   onChange={handleChange}
+                              value={1}
                               name="Beauty & Household"
                             />
                           }
@@ -377,10 +395,10 @@ const Explore = () => {
                             <img src={oneStar} width={"75px"} alt="5star" />
                           }
                         />
-                      </FormGroup>
+                      </RadioGroup>
                     </FormControl>
                   </AccordionDetails>
-                </Accordion> */}
+                </Accordion>
                 {/* Discount */}
                 {/* <Accordion
                   defaultExpanded

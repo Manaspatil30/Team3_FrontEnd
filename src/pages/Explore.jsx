@@ -28,6 +28,7 @@ import threeStar from "../images/3Star.svg";
 import twoStar from "../images/2Star.svg";
 import oneStar from "../images/1Star.svg";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { withParam } from "../utils/Router.Helper";
 
 const PrettoSlider = styled(Slider)({
   color: "#4DB528",
@@ -68,14 +69,16 @@ const PrettoSlider = styled(Slider)({
   },
 });
 
-const Explore = () => {
+const Explore = (props) => {
   const [products, setProducts] = useState();
-  const [filterValue, setFilterValue] = useState(undefined);
+  const [filterValue, setFilterValue] = useState(props.params.category);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [price, setPrice] = useState(20);
   const [rating, setRating] = useState();
 
-  const handleCheckboxChange = (e) => {
+  console.log(props.params.category)
+
+const handleCheckboxChange = (e) => {
     const { value, checked } = e.target;
   
     if (checked) {
@@ -94,7 +97,7 @@ const Explore = () => {
       }
       );
     }
-  };
+};
 
   console.log("filter value", filterValue)
 
@@ -103,7 +106,7 @@ const Explore = () => {
       .get("products")
       .then((data) => setProducts(data.data))
       .catch((err) => {});
-  }, [filterValue]);
+  }, []);
 
   useEffect(()=>{
     axios.get("products/category/"+filterValue)
@@ -111,6 +114,8 @@ const Explore = () => {
     .then(()=>{console.log("Filtered",filteredProducts)})
     .catch((err) => {})
   },[filterValue])
+
+  console.log("Filtered Products", filteredProducts)
 
   useEffect(()=>{
     axios.get("api/grocery-by-price/0/"+price)
@@ -182,6 +187,7 @@ const Explore = () => {
                               //   checked={gilad}
                               onChange={handleCheckboxChange}
                               name="Fruits"
+                              defaultChecked = {props.params.category == "Fruits"}
                               value={"Fruits"}
                             />
                           }
@@ -193,6 +199,7 @@ const Explore = () => {
                               //   checked={jason}
                               onChange={handleCheckboxChange}
                               name="Dairy"
+                              defaultChecked = {props.params.category == "Dairy"}
                               value={'Dairy'}
                             />
                           }
@@ -204,6 +211,7 @@ const Explore = () => {
                               //   checked={antoine}
                               onChange={handleCheckboxChange}
                               name="Vegetables"
+                              defaultChecked = {props.params.category == "Vegetables"}
                               value={'Vegetables'}
                             />
                           }
@@ -215,6 +223,7 @@ const Explore = () => {
                               //   checked={antoine}
                               onChange={handleCheckboxChange}
                               name="Bakery"
+                              defaultChecked = {props.params.category == "Bakery"}
                               value={'Bakery'}
                             />
                           }
@@ -226,6 +235,7 @@ const Explore = () => {
                               //   checked={antoine}
                               onChange={handleCheckboxChange}
                               name="Meat"
+                              defaultChecked = {props.params.category == "Meat"}
                               value="Meat"
                             />
                           }
@@ -587,4 +597,4 @@ const Explore = () => {
   );
 };
 
-export default Explore;
+export default withParam(Explore);

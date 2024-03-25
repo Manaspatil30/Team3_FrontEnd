@@ -286,7 +286,7 @@ const NavbarSearch = () => {
                 All Categories
             </Button>
             <Box width={'35%'} display={'flex'} alignItems={'center'} textAlign={'center'} justifyContent={'space-evenly'}>
-                <Button href='/explore' sx={{color:'#000', fontWeight:'700', textTransform:'none'}} endIcon={<KeyboardArrowDownRoundedIcon/>}>
+                <Button href='/explore/undefined' sx={{color:'#000', fontWeight:'700', textTransform:'none'}} endIcon={<KeyboardArrowDownRoundedIcon/>}>
                     Explore
                 </Button>
                 <Button href='/AboutUs' sx={{color:'#000', fontWeight:'700', textTransform:'none'}} endIcon={<KeyboardArrowDownRoundedIcon/>}>

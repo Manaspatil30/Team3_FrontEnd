@@ -15,12 +15,11 @@ const CategorySection = () => {
         <Typography variant='h6' color={'#A49E9E'}>Empowering Targeted Markets through Purpose-Driven Networks</Typography>
 
         <Box display={'flex'} justifyContent={'space-between'} margin={'0, auto'}>
-        <CategoryCard img={vegetable} heading={"Vegetables"}/>
-        <CategoryCard img={coffee} heading={"Coffee & Drinks"}/>
-        <CategoryCard img={dairy} heading={"Milk & Dairy"}/>
-        <CategoryCard img={meat} heading={"Meat"}/>
-        <CategoryCard img={fruit} heading={"Fresh Fruits"}/>
-        <CategoryCard img={cleaning} heading={"Cleaning Esssentials"}/>
+        <CategoryCard img={vegetable} heading={"Vegetables"} link={"Explore/Vegetables"}/>
+        <CategoryCard img={coffee} heading={"Bakery"} link={"Explore/Bakery"}/>
+        <CategoryCard img={dairy} heading={"Milk & Dairy"} link={"Explore/Dairy"}/>
+        <CategoryCard img={meat} heading={"Meat"} link={"Explore/Meat"}/>
+        <CategoryCard img={fruit} heading={"Fresh Fruits"} link={"Explore/Fruits"}/>
         </Box>
         
         {/* <Box width={'100%'} marginTop={'3%'}>

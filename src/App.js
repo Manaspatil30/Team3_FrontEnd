@@ -72,7 +72,7 @@ function App() {
           <Routes>
             <Route path='/' element={<Home/>}/>
             <Route path='/account/:id' element={<Account/>}/>
-            <Route path='/explore' element={<Explore/>}/>
+            <Route path='/explore/:category' element={<Explore/>}/>
             <Route path='/signUp' element={<Signup/>}/>
             <Route path='/Cart' element={<Cart/>}/>
             <Route path='/productdetails/:id/:storeid' element={<ProductPage/>}/>

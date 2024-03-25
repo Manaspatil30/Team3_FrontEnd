@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import img from '../images/tomato.png';
-import {  Grid, Card, CardMedia,CardContent,Typography,Button, TextField, Rating } from '@mui/material';
+import {  Grid, Card, CardMedia,CardContent,Typography,Button, TextField, Rating, Stack, IconButton } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import axios from 'axios';
 import { withParam } from '../utils/Router.Helper';
 import { toast } from 'react-toastify';
 import Cookies from 'js-cookie';
+import RemoveRoundedIcon from '@mui/icons-material/RemoveRounded';
+import AddRoundedIcon from '@mui/icons-material/AddRounded';
 // import  {FaCcMastercard}  from "react-icons/fa";
 // import { FaCcVisa } from "react-icons/fa6";
 
@@ -199,6 +201,30 @@ const ProductDetailsCard = (props) => {
                   ""
                 )}
               </Typography>
+              <Stack
+                direction="row"
+                alignItems="center"
+                spacing={1}
+                width={"100%"}
+              >
+                <IconButton
+                  aria-label="delete"
+                  size="medium"
+                  onClick={delQuantity1}
+                >
+                  <RemoveRoundedIcon fontSize="inherit" />
+                </IconButton>
+
+                <Typography variant="caption">{quantity1}</Typography>
+
+                <IconButton
+                  aria-label="delete"
+                  size="medium"
+                  onClick={addQuantity1}
+                >
+                  <AddRoundedIcon fontSize="inherit" />
+                </IconButton>
+              </Stack>
               <Button
                 style={{ backgroundColor: "green", textTransform: "none" }}
                 variant="contained"
@@ -261,6 +287,30 @@ const ProductDetailsCard = (props) => {
                   >
                     Price: £{productDetail ? productDetail[1].price : ""}
                   </Typography>
+                  <Stack
+                direction="row"
+                alignItems="center"
+                spacing={1}
+                width={"100%"}
+              >
+                <IconButton
+                  aria-label="delete"
+                  size="small"
+                  onClick={delQuantity2}
+                >
+                  <RemoveRoundedIcon fontSize="inherit" />
+                </IconButton>
+
+                <Typography variant="caption">{quantity2}</Typography>
+
+                <IconButton
+                  aria-label="delete"
+                  size="small"
+                  onClick={addQuantity2}
+                >
+                  <AddRoundedIcon fontSize="inherit" />
+                </IconButton>
+              </Stack>
                   <Button
                     style={{ backgroundColor: "green", textTransform: "none" }}
                     variant="contained"
@@ -324,6 +374,30 @@ const ProductDetailsCard = (props) => {
                   >
                     Price: £{productDetail ? productDetail[2].price : ""}
                   </Typography>
+                  <Stack
+                direction="row"
+                alignItems="center"
+                spacing={1}
+                width={"100%"}
+              >
+                <IconButton
+                  aria-label="delete"
+                  size="small"
+                  onClick={delQuantity3}
+                >
+                  <RemoveRoundedIcon fontSize="inherit" />
+                </IconButton>
+
+                <Typography variant="caption">{quantity3}</Typography>
+
+                <IconButton
+                  aria-label="delete"
+                  size="small"
+                  onClick={addQuantity3}
+                >
+                  <AddRoundedIcon fontSize="inherit" />
+                </IconButton>
+              </Stack>
                   <Button
                     style={{ backgroundColor: "green", textTransform: "none" }}
                     variant="contained"
@@ -359,10 +433,14 @@ const ProductDetailsCard = (props) => {
                 id="outlined-basic"
                 label="Enter Review"
                 variant="outlined"
-                onChange={(e)=>{setreview(e.target.value)}}
+                onChange={(e) => {
+                  setreview(e.target.value);
+                }}
               />
 
-              <Button onClick={addRating} variant='contained'>Add Rating</Button>
+              <Button onClick={addRating} variant="contained">
+                Add Rating
+              </Button>
             </Grid>
           </Grid>
         </Grid>

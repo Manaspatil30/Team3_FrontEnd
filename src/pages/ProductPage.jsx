@@ -13,7 +13,7 @@ const ProductPage = (props) => {
       <ProductDetailsCard></ProductDetailsCard>
       <Divider style={{ paddingBottom: '100px'}}></Divider>
       <ProductBenefits></ProductBenefits>
-      <SimilarProducts></SimilarProducts>
+      {/* <SimilarProducts></SimilarProducts> */}
     </Container>
   );
 }

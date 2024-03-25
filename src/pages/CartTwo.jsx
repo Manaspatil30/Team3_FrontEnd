@@ -169,7 +169,7 @@ console.log("Price", price)
       </TableContainer>
       <Grid container justifyContent="space-between" style={{ margin: '5px', marginTop: '10px' }}>
         <Typography variant="h5">
-          Total: £{totalPrice?.toFixed(2)}
+          Total: £{totalPrice ? parseInt(totalPrice).toFixed(2) : ""}
         </Typography>
         <Button disabled={basketData?.length == 0} variant="contained" onClick={handleOpen} style={{ backgroundColor: 'green', color: 'white', fontSize: '1.2rem'}}>
           {/* <Link to="/checkout" style={{ textDecoration: 'none', color: 'inherit' }}> */}

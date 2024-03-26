@@ -104,7 +104,7 @@ const Admins = () => {
     "address" : address,
     "MembershipTypeID" : membership,
     "password" : password,
-    "userType" : "A"
+    "status" : "A"
   }
 
   const addUser = () => {

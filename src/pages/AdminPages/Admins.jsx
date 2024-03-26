@@ -73,7 +73,7 @@ const Admins = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [address, setAddress] = useState(null);
-  const [membership, setMembership] = useState(1);
+  const [membership, setMembership] = useState(2);
   const [startDate, setStartDate] = useState();
   const [endDate, setEndDate] = useState();
 

@@ -108,7 +108,7 @@ const Admins = () => {
   }
 
   const addUser = () => {
-    axios.post('user/add', data)
+    axios.post('user/addAdmin', data)
     .then(()=>{
       toast.success("User Added Successfully")
     })

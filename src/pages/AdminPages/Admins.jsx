@@ -104,11 +104,11 @@ const Admins = () => {
     "address" : address,
     "MembershipTypeID" : membership,
     "password" : password,
-    "status" : "A"
+    "userType" : "A"
   }
 
   const addUser = () => {
-    axios.post('user/addAdmin', data)
+    axios.post('user/add', data)
     .then(()=>{
       toast.success("User Added Successfully")
     })
